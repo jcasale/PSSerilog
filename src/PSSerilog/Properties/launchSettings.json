@@ -1,0 +1,29 @@
+{
+  "profiles": {
+    "PowerShell (dll)": {
+      "commandName": "Executable",
+      "executablePath": "c:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "commandLineArgs": "-NoExit -Command \"Import-Module '$(TargetPath)'\""
+    },
+    "PowerShell (manifest)": {
+      "commandName": "Executable",
+      "executablePath": "c:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "commandLineArgs": "-NoExit -Command \"& {& '$(SolutionDir)ModuleManifest.ps1' -Path '$(TargetDir)PSSerilog.psd1' -Verbose; Import-Module '$(TargetDir)PSSerilog.psd1' -Verbose}\""
+    },
+    "PowerShell ISE": {
+      "commandName": "Executable",
+      "executablePath": "c:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell_ise.exe",
+      "commandLineArgs": "-File Debug.ps1"
+    },
+    "PowerShell Core (dll)": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
+      "commandLineArgs": "-NoExit -Command \"Import-Module '$(TargetPath)'\""
+    },
+    "PowerShell Core (manifest)": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
+      "commandLineArgs": "-NoExit -Command \"& {& '$(SolutionDir)ModuleManifest.ps1' -Path '$(TargetDir)PSSerilog.psd1' -Verbose; Import-Module '$(TargetDir)PSSerilog.psd1' -Verbose}\""
+    }
+  }
+}
