@@ -1,4 +1,4 @@
-# PowerShell NLog Logging Module
+# PowerShell Serilog Logging Module
 
 The `PSSerilog` module provides logging based on the Serilog library.
 
