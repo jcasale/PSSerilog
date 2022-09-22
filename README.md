@@ -69,5 +69,14 @@ Get-Help New-SerilogLoggerConfiguration -Full
     }
     ```
 
+- Create a basic logger and apply it to the Serilog default static logger:
+
+    ```powershell
+    $name = [IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name)
+    $path = [IO.Path]::ChangeExtension($MyInvocation.MyCommand.Path, '.log')
+    $logger = New-SerilogBasicLogger -Name $name -Path $path -ErrorAction Stop |
+        Set-SerilogDefaultLogger -ErrorAction Stop
+    ```
+
     > **Warning**
-    > Don't call `New-SerilogBasicLogger` more than once without shutting down logging by calling `Stop-SerilogLogging`.
+    > Don't call `Set-SerilogDefaultLogger` more than once without shutting down logging by calling `Stop-SerilogLogging`.

@@ -19,7 +19,6 @@ This cmdlet performs the following functions:
 
   * Creates a new Serilog configuration with a console and file sink.
   * Creates a new Serilog logger
-  * Assigns the new logger to the static Serilog default logger.
   * Begins tracking the logger in session state for disposal.
   * Returns the logger instance.
 

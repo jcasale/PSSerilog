@@ -1,6 +1,5 @@
 namespace PSSerilog;
 
-using System;
 using System.Management.Automation;
 using Serilog;
 using Serilog.Core;
@@ -28,17 +27,6 @@ public class NewSerilogBasicLoggerCommand : SerilogLoggerBase
 
     protected override void ProcessRecord()
     {
-        if (Log.Logger != Logger.None)
-        {
-            this.ThrowTerminatingError(new ErrorRecord(
-                new InvalidOperationException("The default logger is already set."),
-                "DefaultLoggerAlreadySet",
-                ErrorCategory.InvalidOperation,
-                null));
-
-            return;
-        }
-
         var template = string.IsNullOrWhiteSpace(this.Name)
             ? "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level}] {Message:l}{NewLine}{Exception}"
             : "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{SourceContext}] [{Level}] {Message:l}{NewLine}{Exception}";
@@ -54,8 +42,6 @@ public class NewSerilogBasicLoggerCommand : SerilogLoggerBase
             : configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, this.Name);
 
         this.AddLogger(logger);
-
-        Log.Logger = logger;
 
         this.WriteObject(logger);
     }
