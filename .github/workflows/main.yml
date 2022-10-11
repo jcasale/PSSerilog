@@ -72,6 +72,15 @@ jobs:
         shell: cmd
         run: light.exe -nologo -out ps-serilog.msi -ext WixUIExtension.dll -spdb package\Fragment.wixobj package\Product.wixobj
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+            name: ps-serilog
+            path: |
+                ./docs/
+                ./ps-serilog.msi
+            if-no-files-found: error
+
       - name: Test installer
         run: |
             Start-Process msiexec.exe -ArgumentList '/i','ps-serilog.msi','/qn' -Wait -NoNewWindow -ErrorAction Stop
