@@ -24,3 +24,23 @@ The default logger can be accessed by using the Get-SerilogDefaultLogger cmdlet.
 ```powershell
 PS> Set-SerilogDefaultLogger -Logger $logger
 ```
+
+### ----------- Example 2: Set the default logger to the specified instance and terminate if the default was already set -----------
+
+```powershell
+PS> $logger = New-SerilogBasicLogger `
+    -Name $name `
+    -Path $path `
+    -ErrorAction Stop |
+  Set-SerilogDefaultLogger -ErrorAction Stop
+```
+
+### ----------- Example 3: Set the default logger to the specified instance and continue if the default was already set -----------
+
+```powershell
+PS> $logger = New-SerilogBasicLogger `
+    -Name $name `
+    -Path $path `
+    -ErrorAction Stop |
+  Set-SerilogDefaultLogger -ErrorAction SilentlyContinue
+```

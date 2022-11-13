@@ -20,18 +20,18 @@ public class SetSerilogDefaultLoggerCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        if (Log.Logger != Serilog.Core.Logger.None)
+        if (Log.Logger == Serilog.Core.Logger.None)
         {
-            this.ThrowTerminatingError(new ErrorRecord(
+            Log.Logger = this.Logger;
+        }
+        else
+        {
+            this.WriteError(new ErrorRecord(
                 new InvalidOperationException("The default logger is already set."),
                 "DefaultLoggerAlreadySet",
                 ErrorCategory.InvalidOperation,
                 null));
-
-            return;
         }
-
-        Log.Logger = this.Logger;
 
         this.WriteObject(this.Logger);
     }
