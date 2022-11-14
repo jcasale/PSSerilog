@@ -6,7 +6,7 @@ using Serilog.Core;
 
 [Cmdlet(VerbsCommon.New, "SerilogBasicLogger")]
 [OutputType(typeof(ILogger))]
-public class NewSerilogBasicLoggerCommand : SerilogLoggerBase
+public class NewSerilogBasicLoggerCommand : PSCmdlet
 {
     [Parameter(
         Position = 0,
@@ -40,8 +40,6 @@ public class NewSerilogBasicLoggerCommand : SerilogLoggerBase
         var logger = string.IsNullOrWhiteSpace(this.Name)
             ? configuration.CreateLogger()
             : configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, this.Name);
-
-        this.AddLogger(logger);
 
         this.WriteObject(logger);
     }

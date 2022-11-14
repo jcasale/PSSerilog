@@ -65,7 +65,8 @@ Get-Help New-SerilogLoggerConfiguration -Full
     }
     finally
     {
-        Stop-SerilogLogging
+        # Call Dispose() here and not Close-SerilogDefaultLogger as the instance was not applied to the static logger.
+        $logger.Dispose()
     }
     ```
 
@@ -76,7 +77,23 @@ Get-Help New-SerilogLoggerConfiguration -Full
     $path = [IO.Path]::ChangeExtension($MyInvocation.MyCommand.Path, '.log')
     $logger = New-SerilogBasicLogger -Name $name -Path $path -ErrorAction Stop |
         Set-SerilogDefaultLogger -ErrorAction Stop
+
+    try
+    {
+        # The other-script.ps1 can call Get-SerilogDefaultLogger to get a logger configured however necessary.
+        & "$PSScriptRoot\other-script.ps1"
+    }
+    catch
+    {
+        $logger.Fatal($_.Exception, 'Execution failed.')
+
+        throw
+    }
+    finally
+    {
+        Close-SerilogDefaultLogger
+    }
     ```
 
     > **Warning**
-    > Don't call `Set-SerilogDefaultLogger` more than once without shutting down logging by calling `Stop-SerilogLogging`.
+    > Don't call `Set-SerilogDefaultLogger` more than once without calling `Close-SerilogDefaultLogger`.

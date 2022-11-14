@@ -90,9 +90,9 @@ jobs:
       - name: Test installer
         run: |
             Start-Process msiexec.exe -ArgumentList '/i','ps-serilog.msi','/qn' -Wait -NoNewWindow -ErrorAction Stop
-            $logger = New-SerilogLoggerConfiguration |Add-SerilogSinkConsole |New-SerilogLogger
+            $logger = New-SerilogLoggerConfiguration |Add-SerilogSinkConsole |New-SerilogLogger |Set-SerilogDefaultLogger
             $logger.Information('Hello world!')
-            Stop-SerilogLogging
+            Close-SerilogDefaultLogger
 
       - name: Publish release
         if: github.ref_type == 'tag'

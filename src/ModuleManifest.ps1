@@ -56,21 +56,19 @@ $content = @'
   NestedModules = @()
   FunctionsToExport = @()
   CmdletsToExport = @(
-    'Add-SerilogLogger',
     'Add-SerilogSinkConsole',
     'Add-SerilogSinkEmail',
     'Add-SerilogSinkEventLog',
     'Add-SerilogSinkFile',
+    'Close-SerilogDefaultLogger',
     'Get-SerilogDefaultLogger',
-    'Get-SerilogLogger',
     'New-SerilogBasicLogger',
     'New-SerilogGlobalContext',
     'New-SerilogLogContext',
     'New-SerilogLogger',
     'New-SerilogLoggerConfiguration',
     'New-SerilogLoggingLevelSwitch',
-    'Set-SerilogDefaultLogger',
-    'Stop-SerilogLogging'
+    'Set-SerilogDefaultLogger'
   )
   VariablesToExport = @()
   AliasesToExport = @()

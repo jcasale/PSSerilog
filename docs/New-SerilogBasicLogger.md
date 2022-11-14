@@ -18,8 +18,7 @@ The New-SerilogBasicLogger cmdlet creates a basic logger with a common configura
 This cmdlet performs the following functions:
 
   * Creates a new Serilog configuration with a console and file sink.
-  * Creates a new Serilog logger
-  * Begins tracking the logger in session state for disposal.
+  * Creates a new Serilog logger.
   * Returns the logger instance.
 
 ## EXAMPLES
