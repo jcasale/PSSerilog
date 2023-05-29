@@ -97,3 +97,26 @@ Get-Help New-SerilogLoggerConfiguration -Full
 
     > **Warning**
     > Don't call `Set-SerilogDefaultLogger` more than once without calling `Close-SerilogDefaultLogger`.
+
+- Create a custom logger and a global context:
+
+    ```powershell
+    $template = '[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level}] [{MyValue}] {Message:l}{NewLine}{Exception}'
+    $configuration = New-SerilogLoggerConfiguration -MinimumLevel Verbose -GlobalContext |
+        Add-SerilogSinkConsole -OutputTemplate $template
+
+    $logger = New-SerilogLogger -Configuration $configuration
+
+    $context = New-SerilogGlobalContext -Name MyValue -Value 42
+    $logger.Information('Message 1')
+    $context.Dispose()
+
+    $logger.Information('Message 2')
+    ```
+
+    Results in:
+
+    ```text
+    [2023-05-28 18:27:07.489] [Information] [42] Message 1
+    [2023-05-28 18:27:07.490] [Information] [] Message 2
+    ```
