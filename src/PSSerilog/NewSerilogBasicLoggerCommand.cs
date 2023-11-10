@@ -1,5 +1,6 @@
 namespace PSSerilog;
 
+using System.Globalization;
 using System.Management.Automation;
 using Serilog;
 using Serilog.Core;
@@ -34,8 +35,8 @@ public class NewSerilogBasicLoggerCommand : PSCmdlet
         var configuration = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .Enrich.FromLogContext()
-            .WriteTo.Console(outputTemplate: template)
-            .WriteTo.File(this.Path, outputTemplate: template);
+            .WriteTo.Console(outputTemplate: template, formatProvider: CultureInfo.InvariantCulture)
+            .WriteTo.File(this.Path, outputTemplate: template, formatProvider: CultureInfo.InvariantCulture);
 
         var logger = string.IsNullOrWhiteSpace(this.Name)
             ? configuration.CreateLogger()
