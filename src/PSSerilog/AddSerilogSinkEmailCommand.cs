@@ -3,13 +3,16 @@ namespace PSSerilog;
 using System;
 using System.Management.Automation;
 using System.Net;
+using System.Net.Security;
+using MailKit.Security;
 using Serilog;
+using Serilog.Core;
 using Serilog.Events;
-using Serilog.Formatting;
+using Serilog.Formatting.Display;
 using Serilog.Sinks.Email;
-using Serilog.Templates;
+using Serilog.Sinks.PeriodicBatching;
 
-[Cmdlet(VerbsCommon.Add, "SerilogSinkEmail", DefaultParameterSetName = nameof(OutputTemplate))]
+[Cmdlet(VerbsCommon.Add, "SerilogSinkEmail")]
 [OutputType(typeof(LoggerConfiguration))]
 public class AddSerilogSinkEmailCommand : PSCmdlet
 {
@@ -23,166 +26,173 @@ public class AddSerilogSinkEmailCommand : PSCmdlet
     public LoggerConfiguration Configuration { get; set; }
 
     [Parameter(
-        ValueFromPipeline = false,
-        ValueFromPipelineByPropertyName = true,
-        ParameterSetName = nameof(OutputTemplate),
-        HelpMessage = "The message template describing the format used to write to the sink.")]
-    [ValidateNotNullOrEmpty]
-    public string OutputTemplate { get; set; } = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}";
-
-    [Parameter(
-        ValueFromPipeline = false,
-        ValueFromPipelineByPropertyName = true,
-        ParameterSetName = nameof(OutputTemplate),
-        HelpMessage = "The culture-specific formatting information.")]
-    [ValidateNotNull]
-    public IFormatProvider FormatProvider { get; set; }
-
-    [Parameter(
-        Mandatory = true,
-        ValueFromPipeline = false,
-        ValueFromPipelineByPropertyName = true,
-        ParameterSetName = nameof(Formatter),
-        HelpMessage = "The formatter to convert the log events into text for the file.")]
-    [ValidateNotNull]
-    public ITextFormatter Formatter { get; set; }
-
-    [Parameter(
-        Mandatory = true,
-        ValueFromPipeline = false,
-        ValueFromPipelineByPropertyName = true,
-        ParameterSetName = nameof(ExpressionTemplate),
-        HelpMessage = "The expression template describing the format used to write to the sink.")]
-    [ValidateNotNullOrEmpty]
-    public string ExpressionTemplate { get; set; }
-
-    [Parameter(
         Mandatory = true,
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The email address emails will be sent from.")]
-    public string FromEmail { get; set; }
+    [ValidateNotNullOrEmpty]
+    public string From { get; set; }
 
     [Parameter(
         Mandatory = true,
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The email address(es) emails will be sent to.")]
-    public string[] ToEmail { get; set; }
+    [ValidateNotNullOrEmpty]
+    public string[] To { get; set; }
 
     [Parameter(
         Mandatory = true,
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The SMTP email server to use.")]
+    [ValidateNotNullOrEmpty]
     public string MailServer { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The port used for the connection. Default is 25.")]
-    public int Port { get; set; } = 25;
+        HelpMessage = "The port used for the connection. The default is 25.")]
+    public int? Port { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "Enables the use of SSL in the SMTP client.")]
-    public SwitchParameter EnableSsl { get; set; }
+        HelpMessage = "The network credentials to use to authenticate with the mail server.")]
+    public ICredentialsByHost Credentials { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "Enables HTML in the body of the email.")]
-    public SwitchParameter IsBodyHtml { get; set; }
+        HelpMessage = "A message template describing the email subject. The default is \"Log Messages\".")]
+    public string Subject { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The credentials used for authentication.")]
-    public NetworkCredential NetworkCredential { get; set; }
+        HelpMessage = "A message template describing the format of the email body. The default is \"{Timestamp} [{Level}] {Message}{NewLine}{Exception}\"..")]
+    public string Body { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The maximum number of events to post in a single batch.")]
-    public int BatchPostingLimit { get; set; } = 100;
+        HelpMessage = "Sets whether the body contents of the email is HTML. The default is false.")]
+    public bool IsBodyHtml { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The time to wait between checking for event batches.")]
-    public TimeSpan? Period { get; set; }
+        HelpMessage = "The security applied to the SMTP connection. The default is Auto.")]
+    public SecureSocketOptions? ConnectionSecurity { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The subject, can be a plain string or a template such as {Timestamp} [{Level}] occurred.")]
-    public string MailSubject { get; set; } = "Log Email";
+        HelpMessage = "Provides a method that validates server certificates.")]
+    public RemoteCertificateValidationCallback ServerCertificateValidationCallback { get; set; }
+
+    [Parameter(
+        ValueFromPipeline = false,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "The culture-specific formatting information.")]
+    public IFormatProvider FormatProvider { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The minimum level at which events will be passed to sinks. Ignored when level switch is specified.")]
-    public LogEventLevel MinimumLevel { get; set; } = LogEventLevel.Verbose;
+    public LogEventLevel RestrictedToMinimumLevel { get; set; } = LogEventLevel.Verbose;
+
+    [Parameter(
+        ValueFromPipeline = false,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "The switch allowing the pass-through minimum level to be changed at runtime.")]
+    public LoggingLevelSwitch LevelSwitch { get; set; }
+
+    [Parameter(
+        ValueFromPipeline = false,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "Eagerly emit a batch containing the first received event, regardless of the target batch size or batching time. This helps with perceived liveness when running/debugging applications interactively. The default is true.")]
+    public bool? EagerlyEmitFirstEvent { get; set; }
+
+    [Parameter(
+        ValueFromPipeline = false,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "The maximum number of events to include in a single batch. The default is 1000.")]
+    public int? BatchSizeLimit { get; set; }
+
+    [Parameter(
+        ValueFromPipeline = false,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "The time to wait between checking for event batches. The default is 2 seconds.")]
+    public TimeSpan? Period { get; set; }
+
+    [Parameter(
+        ValueFromPipeline = false,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "Maximum number of events to hold in the sink's internal queue, or null for an unbounded queue. The default is 100000.")]
+    public int? QueueLimit { get; set; }
 
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        var emailConnectionInfo = new EmailConnectionInfo
+        var options = new EmailSinkOptions
         {
-            NetworkCredentials = this.NetworkCredential,
-            Port = this.Port,
-            FromEmail = this.FromEmail,
-            ToEmail = string.Join(";", this.ToEmail),
-            EmailSubject = this.MailSubject,
-            EnableSsl = this.EnableSsl,
-            MailServer = this.MailServer,
-            IsBodyHtml = this.IsBodyHtml
+            From = this.From,
+            To = [..this.To],
+            Host = this.MailServer,
+            Credentials = this.Credentials,
+            IsBodyHtml = this.IsBodyHtml,
+            ServerCertificateValidationCallback = this.ServerCertificateValidationCallback
         };
 
-        switch (this.ParameterSetName)
+        if (this.Port is not null)
         {
-            case nameof(this.OutputTemplate):
-
-                this.Configuration.WriteTo.Email(
-                    emailConnectionInfo,
-                    this.OutputTemplate,
-                    this.MinimumLevel,
-                    this.BatchPostingLimit,
-                    this.Period,
-                    this.FormatProvider,
-                    this.MailSubject);
-
-                break;
-
-            case nameof(this.Formatter):
-
-                this.Configuration.WriteTo.Email(
-                    emailConnectionInfo,
-                    this.Formatter,
-                    this.MinimumLevel,
-                    this.BatchPostingLimit,
-                    this.Period,
-                    this.MailSubject);
-
-                break;
-
-            case nameof(this.ExpressionTemplate):
-
-                this.Configuration.WriteTo.Email(
-                    emailConnectionInfo,
-                    new ExpressionTemplate(this.ExpressionTemplate),
-                    this.MinimumLevel,
-                    this.BatchPostingLimit,
-                    this.Period,
-                    this.MailSubject);
-
-                break;
-
-            default:
-
-                throw new InvalidOperationException($"Unknown parameter set name: \"{this.ParameterSetName}\".");
+            options.Port = this.Port.Value;
         }
+
+        if (!string.IsNullOrWhiteSpace(this.Subject))
+        {
+            options.Subject = new MessageTemplateTextFormatter(this.Subject, this.FormatProvider);
+        }
+
+        if (!string.IsNullOrWhiteSpace(this.Body))
+        {
+            options.Body = new MessageTemplateTextFormatter(this.Body, this.FormatProvider);
+        }
+
+        if (this.ConnectionSecurity is not null)
+        {
+            options.ConnectionSecurity = this.ConnectionSecurity.Value;
+        }
+
+        var batchingOptions = new PeriodicBatchingSinkOptions();
+
+        if (this.EagerlyEmitFirstEvent is not null)
+        {
+            batchingOptions.EagerlyEmitFirstEvent = this.EagerlyEmitFirstEvent.Value;
+        }
+
+        if (this.BatchSizeLimit is not null)
+        {
+            batchingOptions.BatchSizeLimit = this.BatchSizeLimit.Value;
+        }
+
+        if (this.Period is not null)
+        {
+            batchingOptions.Period = this.Period.Value;
+        }
+
+        if (this.QueueLimit is not null)
+        {
+            batchingOptions.QueueLimit = this.QueueLimit.Value;
+        }
+
+        this.Configuration.WriteTo.Email(
+            options,
+            batchingOptions,
+            this.RestrictedToMinimumLevel,
+            this.LevelSwitch);
 
         this.WriteObject(this.Configuration);
     }
