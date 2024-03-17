@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		StyleCop.ruleset = StyleCop.ruleset
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{A071EC5E-47A2-4FF8-BA35-5B4DB360C203}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9692ACAE-59C0-48A0-BB3F-26F5CD245239}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9692ACAE-59C0-48A0-BB3F-26F5CD245239}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9692ACAE-59C0-48A0-BB3F-26F5CD245239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A071EC5E-47A2-4FF8-BA35-5B4DB360C203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A071EC5E-47A2-4FF8-BA35-5B4DB360C203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A071EC5E-47A2-4FF8-BA35-5B4DB360C203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A071EC5E-47A2-4FF8-BA35-5B4DB360C203}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
