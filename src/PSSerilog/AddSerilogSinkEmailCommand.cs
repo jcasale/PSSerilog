@@ -4,7 +4,9 @@ using System;
 using System.Management.Automation;
 using System.Net;
 using System.Net.Security;
+
 using MailKit.Security;
+
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -139,7 +141,7 @@ public class AddSerilogSinkEmailCommand : PSCmdlet
         var options = new EmailSinkOptions
         {
             From = this.From,
-            To = [..this.To],
+            To = [.. this.To],
             Host = this.MailServer,
             Credentials = this.Credentials,
             IsBodyHtml = this.IsBodyHtml,

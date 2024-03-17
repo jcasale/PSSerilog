@@ -2,6 +2,7 @@ namespace PSSerilog;
 
 using System;
 using System.Globalization;
+
 using Serilog.Events;
 using Serilog.Sinks.EventLog;
 

@@ -1,6 +1,7 @@
 namespace PSSerilog;
 
 using System.Management.Automation;
+
 using Serilog.Core;
 using Serilog.Events;
 
