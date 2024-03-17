@@ -24,11 +24,12 @@ jobs:
 
       - name: Setup wix
         run: |
-          dotnet.exe tool install --global wix
+          dotnet.exe tool install --global wix --version 4.0.4 --verbosity diag
 
-          wix.exe extension add WixToolset.UI.wixext --global
+          wix.exe extension add WixToolset.UI.wixext/4.0.4 --global
+          wix.exe extension list --global
 
-          nuget.exe install WixToolset.Heat -NonInteractive
+          nuget.exe install WixToolset.Heat -Version 4.0.4 -NonInteractive -Verbosity detailed
           Get-ChildItem -Path .\WixToolset.Heat* -Recurse |
             Where-Object { $_.FullName.EndsWith('x64\heat.exe') } |
             Select-Object -ExpandProperty DirectoryName |
