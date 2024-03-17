@@ -22,7 +22,7 @@ The Add-SerilogSinkEmail cmdlet adds an email sink to the specified logger confi
 ```powershell
 PS> Add-SerilogSinkEmail `
   -Configuration $configuration `
-  -FromEmail sender@domain.com `
-  -ToEmail recipient@domain.com `
+  -From sender@domain.com `
+  -To recipient@domain.com `
   -MailServer mail.domain.com
 ```
