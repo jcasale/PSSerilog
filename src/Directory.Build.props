@@ -7,6 +7,8 @@
     <Copyright>Copyright (c) Joseph L. Casale. All rights reserved.</Copyright>
   </PropertyGroup>
 
-  <Import Project=".\version.props" Condition="Exists('.\version.props')" />
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)StyleCop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
 
 </Project>

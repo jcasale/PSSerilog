@@ -3,6 +3,7 @@ namespace PSSerilog;
 using System;
 using System.Management.Automation;
 using System.Text;
+
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;

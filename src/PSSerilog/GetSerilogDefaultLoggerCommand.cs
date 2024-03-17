@@ -1,6 +1,7 @@
 namespace PSSerilog;
 
 using System.Management.Automation;
+
 using Serilog;
 
 [Cmdlet(VerbsCommon.Get, "SerilogDefaultLogger")]

@@ -2,6 +2,7 @@ namespace PSSerilog;
 
 using System.Globalization;
 using System.Management.Automation;
+
 using Serilog;
 using Serilog.Core;
 
