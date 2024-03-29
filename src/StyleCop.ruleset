@@ -3,6 +3,7 @@
   <Rules AnalyzerId="Meziantou.Analyzer" RuleNamespace="Meziantou.Analyzer">
     <Rule Id="MA0003" Action="None" />
     <Rule Id="MA0007" Action="None" />
+    <Rule Id="MA0051" Action="None" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
     <Rule Id="IDE0290" Action="None" />
