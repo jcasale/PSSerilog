@@ -8,11 +8,11 @@ using System.Net.Security;
 using MailKit.Security;
 
 using Serilog;
+using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting.Display;
 using Serilog.Sinks.Email;
-using Serilog.Sinks.PeriodicBatching;
 
 [Cmdlet(VerbsCommon.Add, "SerilogSinkEmail")]
 [OutputType(typeof(LoggerConfiguration))]
@@ -126,8 +126,8 @@ public class AddSerilogSinkEmailCommand : PSCmdlet
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The time to wait between checking for event batches. The default is 2 seconds.")]
-    public TimeSpan? Period { get; set; }
+        HelpMessage = "The maximum delay between event batches. The default is 2 seconds.")]
+    public TimeSpan? BufferingTimeLimit { get; set; }
 
     [Parameter(
         ValueFromPipeline = false,
@@ -168,7 +168,7 @@ public class AddSerilogSinkEmailCommand : PSCmdlet
             options.ConnectionSecurity = this.ConnectionSecurity.Value;
         }
 
-        var batchingOptions = new PeriodicBatchingSinkOptions();
+        var batchingOptions = new BatchingOptions();
 
         if (this.EagerlyEmitFirstEvent is not null)
         {
@@ -180,9 +180,9 @@ public class AddSerilogSinkEmailCommand : PSCmdlet
             batchingOptions.BatchSizeLimit = this.BatchSizeLimit.Value;
         }
 
-        if (this.Period is not null)
+        if (this.BufferingTimeLimit is not null)
         {
-            batchingOptions.Period = this.Period.Value;
+            batchingOptions.BufferingTimeLimit = this.BufferingTimeLimit.Value;
         }
 
         if (this.QueueLimit is not null)

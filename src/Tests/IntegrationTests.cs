@@ -30,7 +30,7 @@ public class IntegrationTests
     {
         const string message = "Hello world!";
         const string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level}] {Message:l}{NewLine}{Exception}";
-        var result = string.Format(CultureInfo.InvariantCulture, " [Information] {0}\r\n", message);
+        var result = ((FormattableString)$" [Information] {message}\r\n").ToString(CultureInfo.InvariantCulture);
 
         var initialSessionState = InitialSessionState.CreateDefault();
 
@@ -66,21 +66,21 @@ public class IntegrationTests
         powerShell
             .AddStatement()
             .AddScript(
-                """
+                ((FormattableString)$$"""
                 $originalOut = [Console]::Out
                 $writer = [IO.StringWriter]::new()
                 try
                 {
-                    [Console]::SetOut($writer)
-                    $logger.Information('Hello world!')
+                 [Console]::SetOut($writer)
+                 $logger.Information('{{message}}')
                 }
                 finally
                 {
-                    [Console]::SetOut($originalOut)
+                 [Console]::SetOut($originalOut)
                 }
 
                 $writer.ToString()
-                """);
+                """).ToString(CultureInfo.InvariantCulture));
 
         powerShell
             .AddStatement()
@@ -164,7 +164,7 @@ public class IntegrationTests
 
         powerShell
             .AddStatement()
-            .AddScript("$logger.Information('Hello world!')");
+            .AddScript(((FormattableString)$"$logger.Information('{message}')").ToString(CultureInfo.InvariantCulture));
 
         powerShell
             .AddStatement()
@@ -175,14 +175,10 @@ public class IntegrationTests
         Assert.False(powerShell.HadErrors);
 
         var stopWatch = Stopwatch.StartNew();
-        while (stopWatch.ElapsedMilliseconds < 5000)
+        while (stopWatch.ElapsedMilliseconds < 5000 && messages.Count == 0)
         {
             await Task.Delay(100, cancellationTokenSource.Token);
             Debug.WriteLine($"Messages Count: {messages.Count}");
-            if (messages.Count > 0)
-            {
-                break;
-            }
         }
 
         stopWatch.Stop();
@@ -260,7 +256,7 @@ public class IntegrationTests
 
             powerShell
                 .AddStatement()
-                .AddScript("$logger.Information('Hello world!')");
+                .AddScript(((FormattableString)$"$logger.Information('{message}')").ToString(CultureInfo.InvariantCulture));
 
             powerShell
                 .AddStatement()

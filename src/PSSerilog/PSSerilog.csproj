@@ -7,20 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.146">
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.156">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.1.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="Serilog" Version="3.1.1" />
-    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.3.0" />
+    <PackageReference Include="Serilog" Version="4.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.0" />
     <PackageReference Include="Serilog.Enrichers.GlobalLogContext" Version="3.0.0" />
     <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
-    <PackageReference Include="Serilog.Expressions" Version="4.0.0" />
-    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
-    <PackageReference Include="Serilog.Sinks.Email" Version="3.0.0" />
+    <PackageReference Include="Serilog.Expressions" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.Email" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.EventLog" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556">
@@ -39,7 +39,7 @@
       <CopyToOutputDirectory Condition="'$(Configuration)'!='DEBUG'">Never</CopyToOutputDirectory>
     </None>
     <None Update="$(NameModuleManifest)" CopyToOutputDirectory="Always" />
-    <Content Update="$(NameModuleManifest)" CopyToPublishDirectory="Always" />
+    <None Update="ResolveEventHandler.ps1" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
   <Target Name="GetVersionFromGit">
@@ -60,7 +60,7 @@
 
   <Target Name="CreateModuleManifest" AfterTargets="GetVersionFromGit">
     <Message Text="*** Writing PowerShell module manifest to $(NameModuleManifest)." Importance="high" />
-    <WriteLinesToFile File="$(NameModuleManifest)" Overwrite="true" Lines="&#xD;&#xA;@{&#xD;&#xA;  RootModule = 'PSSerilog.dll'&#xD;&#xA;  ModuleVersion = '$(Version)'&#xD;&#xA;  GUID = '407659af-362f-47f3-946b-fc0cf70a94ce'&#xD;&#xA;  Author = 'Joseph L. Casale'&#xD;&#xA;  CompanyName = 'Joseph L. Casale'&#xD;&#xA;  Copyright = '(c) Joseph L. Casale. All rights reserved.'&#xD;&#xA;  Description = 'A PowerShell module for logging based on the Serilog library.'&#xD;&#xA;  RequiredAssemblies = @('Serilog.dll')&#xD;&#xA;  NestedModules = @()&#xD;&#xA;  FunctionsToExport = @()&#xD;&#xA;  CmdletsToExport = @(&#xD;&#xA;    'Add-SerilogSinkConsole',&#xD;&#xA;    'Add-SerilogSinkEmail',&#xD;&#xA;    'Add-SerilogSinkEventLog',&#xD;&#xA;    'Add-SerilogSinkFile',&#xD;&#xA;    'Close-SerilogDefaultLogger',&#xD;&#xA;    'Get-SerilogDefaultLogger',&#xD;&#xA;    'New-SerilogBasicLogger',&#xD;&#xA;    'New-SerilogGlobalContext',&#xD;&#xA;    'New-SerilogLogContext',&#xD;&#xA;    'New-SerilogLogger',&#xD;&#xA;    'New-SerilogLoggerConfiguration',&#xD;&#xA;    'New-SerilogLoggingLevelSwitch',&#xD;&#xA;    'Set-SerilogDefaultLogger'&#xD;&#xA;  )&#xD;&#xA;  VariablesToExport = @()&#xD;&#xA;  AliasesToExport = @()&#xD;&#xA;  PrivateData = @{ PSData = @{} }&#xD;&#xA;}" />
+    <WriteLinesToFile File="$(NameModuleManifest)" Overwrite="true" Lines="&#xD;&#xA;@{&#xD;&#xA;  RootModule = 'PSSerilog.dll'&#xD;&#xA;  ModuleVersion = '$(Version)'&#xD;&#xA;  GUID = '407659af-362f-47f3-946b-fc0cf70a94ce'&#xD;&#xA;  Author = 'Joseph L. Casale'&#xD;&#xA;  CompanyName = 'Joseph L. Casale'&#xD;&#xA;  Copyright = '(c) Joseph L. Casale. All rights reserved.'&#xD;&#xA;  Description = 'A PowerShell module for logging based on the Serilog library.'&#xD;&#xA;  ScriptsToProcess = @('ResolveEventHandler.ps1')&#xD;&#xA;  RequiredAssemblies = @('Serilog.dll')&#xD;&#xA;  NestedModules = @()&#xD;&#xA;  FunctionsToExport = @()&#xD;&#xA;  CmdletsToExport = @(&#xD;&#xA;    'Add-SerilogSinkConsole',&#xD;&#xA;    'Add-SerilogSinkEmail',&#xD;&#xA;    'Add-SerilogSinkEventLog',&#xD;&#xA;    'Add-SerilogSinkFile',&#xD;&#xA;    'Close-SerilogDefaultLogger',&#xD;&#xA;    'Get-SerilogDefaultLogger',&#xD;&#xA;    'New-SerilogBasicLogger',&#xD;&#xA;    'New-SerilogGlobalContext',&#xD;&#xA;    'New-SerilogLogContext',&#xD;&#xA;    'New-SerilogLogger',&#xD;&#xA;    'New-SerilogLoggerConfiguration',&#xD;&#xA;    'New-SerilogLoggingLevelSwitch',&#xD;&#xA;    'Set-SerilogDefaultLogger'&#xD;&#xA;  )&#xD;&#xA;  VariablesToExport = @()&#xD;&#xA;  AliasesToExport = @()&#xD;&#xA;  PrivateData = @{ PSData = @{} }&#xD;&#xA;}" />
   </Target>
 
 </Project>
