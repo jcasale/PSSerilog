@@ -1,6 +1,7 @@
 namespace PSSerilog;
 
 using System;
+using System.Collections;
 using System.Management.Automation;
 
 using Serilog;
@@ -26,12 +27,6 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
     [Parameter(
         ValueFromPipeline = true,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "Enables the enrichment of log events with properties from global context.")]
-    public SwitchParameter GlobalContext { get; set; }
-
-    [Parameter(
-        ValueFromPipeline = true,
-        ValueFromPipelineByPropertyName = true,
         HelpMessage = "Enables the enrichment of log events with the machine name.")]
     public SwitchParameter MachineName { get; set; }
 
@@ -53,6 +48,12 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
         HelpMessage = "Enables the enrichment of log events with the thread id.")]
     public SwitchParameter ThreadId { get; set; }
 
+    [Parameter(
+        ValueFromPipeline = true,
+        ValueFromPipelineByPropertyName = true,
+        HelpMessage = "Enables the enrichment of log events with properties.")]
+    public Hashtable Properties { get; set; }
+
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
@@ -61,11 +62,6 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
         if (this.LogContext.IsPresent)
         {
             configuration.Enrich.FromLogContext();
-        }
-
-        if (this.GlobalContext.IsPresent)
-        {
-            configuration.Enrich.FromGlobalLogContext();
         }
 
         if (this.MachineName.IsPresent)
@@ -86,6 +82,14 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
         if (this.ThreadId.IsPresent)
         {
             configuration.Enrich.WithThreadId();
+        }
+
+        if (this.Properties is not null)
+        {
+            foreach (DictionaryEntry entry in this.Properties)
+            {
+                configuration.Enrich.WithProperty(entry.Key.ToString(), entry.Value);
+            }
         }
 
         if (this.MinimumLevel is not null)
