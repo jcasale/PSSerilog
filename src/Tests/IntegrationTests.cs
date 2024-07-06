@@ -1,6 +1,7 @@
 namespace Tests;
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -196,6 +197,7 @@ public class IntegrationTests
         const string key = "MyValue";
         const int value = 42;
         const string message = "Hello world!";
+        var properties = new Hashtable { { key, value } };
         var outputTemplate = string.Format(
             CultureInfo.InvariantCulture,
             "[{{Timestamp:yyyy-MM-dd HH:mm:ss.fff}}] [{{Level}}] [{{{0}}}] {{Message:l}}{{NewLine}}{{Exception}}",
@@ -217,9 +219,6 @@ public class IntegrationTests
         var entry3 = new SessionStateCmdletEntry("Add-SerilogSinkFile", typeof(AddSerilogSinkFileCommand), null);
         initialSessionState.Commands.Add(entry3);
 
-        var entry4 = new SessionStateCmdletEntry("New-SerilogGlobalContext", typeof(NewSerilogGlobalContextCommand), null);
-        initialSessionState.Commands.Add(entry4);
-
         using var runSpace = RunspaceFactory.CreateRunspace(initialSessionState);
         using var powerShell = PowerShell.Create();
 
@@ -238,7 +237,7 @@ public class IntegrationTests
                 .AddStatement()
                 .AddCommand("New-SerilogLoggerConfiguration")
                 .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.MinimumLevel), Serilog.Events.LogEventLevel.Verbose)
-                .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.GlobalContext))
+                .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.Properties), properties)
                 .AddCommand("Add-SerilogSinkFile")
                 .AddParameter(nameof(AddSerilogSinkFileCommand.Path), path)
                 .AddParameter(nameof(AddSerilogSinkFileCommand.OutputTemplate), outputTemplate)
@@ -248,19 +247,7 @@ public class IntegrationTests
 
             powerShell
                 .AddStatement()
-                .AddCommand("New-SerilogGlobalContext")
-                .AddParameter(nameof(NewSerilogGlobalContextCommand.Name), key)
-                .AddParameter(nameof(NewSerilogGlobalContextCommand.Value), value)
-                .AddCommand("Set-Variable")
-                .AddParameter("Name", "context");
-
-            powerShell
-                .AddStatement()
                 .AddScript(((FormattableString)$"$logger.Information('{message}')").ToString(CultureInfo.InvariantCulture));
-
-            powerShell
-                .AddStatement()
-                .AddScript("$context.Dispose()");
 
             powerShell
                 .AddStatement()
