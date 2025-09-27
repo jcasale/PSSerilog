@@ -22,3 +22,9 @@ The Get-SerilogDefaultLogger cmdlet gets the currently configured logger from th
 ```powershell
 PS> $logger = Get-SerilogDefaultLogger
 ```
+
+### ----------- Example 2: Get the currently configured logger, throwing an error if the static logger has not been set -----------
+
+```powershell
+PS> $logger = Get-SerilogDefaultLogger -ExcludeSilentLogger
+```
