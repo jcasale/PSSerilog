@@ -38,10 +38,10 @@ jobs:
           echo "version=$version" >> $env:GITHUB_OUTPUT
 
       - name: Run tests
-        run: dotnet.exe test .\src\PSSerilog.sln
+        run: dotnet.exe test .\src\PSSerilog.slnx
 
       - name: Clean solution
-        run: dotnet.exe clean .\src\PSSerilog.sln --configuration Release
+        run: dotnet.exe clean .\src\PSSerilog.slnx --configuration Release
 
       - name: Build project
         run: dotnet.exe publish .\src\PSSerilog\PSSerilog.csproj --configuration Release --runtime win-x64 --output .\publish
