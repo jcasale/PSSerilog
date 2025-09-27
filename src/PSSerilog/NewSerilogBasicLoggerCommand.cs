@@ -29,7 +29,7 @@ public class NewSerilogBasicLoggerCommand : PSCmdlet
 
     protected override void ProcessRecord()
     {
-        var template = string.IsNullOrWhiteSpace(this.Name)
+        var template = string.IsNullOrWhiteSpace(Name)
             ? "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level}] {Message:l}{NewLine}{Exception}"
             : "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{SourceContext}] [{Level}] {Message:l}{NewLine}{Exception}";
 
@@ -37,12 +37,12 @@ public class NewSerilogBasicLoggerCommand : PSCmdlet
             .MinimumLevel.Verbose()
             .Enrich.FromLogContext()
             .WriteTo.Console(outputTemplate: template, formatProvider: CultureInfo.InvariantCulture)
-            .WriteTo.File(this.Path, outputTemplate: template, formatProvider: CultureInfo.InvariantCulture);
+            .WriteTo.File(Path, outputTemplate: template, formatProvider: CultureInfo.InvariantCulture);
 
-        var logger = string.IsNullOrWhiteSpace(this.Name)
+        var logger = string.IsNullOrWhiteSpace(Name)
             ? configuration.CreateLogger()
-            : configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, this.Name);
+            : configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, Name);
 
-        this.WriteObject(logger);
+        WriteObject(logger);
     }
 }

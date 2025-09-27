@@ -142,74 +142,74 @@ public class AddSerilogSinkFileCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        switch (this.ParameterSetName)
+        switch (ParameterSetName)
         {
-            case nameof(this.OutputTemplate):
+            case nameof(OutputTemplate):
 
-                this.Configuration.WriteTo.File(
-                    this.Path,
-                    this.MinimumLevel,
-                    this.OutputTemplate,
-                    this.FormatProvider,
-                    this.FileSizeLimitBytes,
-                    this.LevelSwitch,
-                    this.Buffered,
-                    this.Shared,
-                    this.FlushToDiskInterval,
-                    this.RollingInterval,
-                    this.RollOnFileSizeLimit,
-                    this.RetainedFileCountLimit,
-                    this.Encoding,
-                    this.Hooks,
-                    this.RetainedFileTimeLimit);
-
-                break;
-
-            case nameof(this.Formatter):
-
-                this.Configuration.WriteTo.File(
-                    this.Formatter,
-                    this.Path,
-                    this.MinimumLevel,
-                    this.FileSizeLimitBytes,
-                    this.LevelSwitch,
-                    this.Buffered,
-                    this.Shared,
-                    this.FlushToDiskInterval,
-                    this.RollingInterval,
-                    this.RollOnFileSizeLimit,
-                    this.RetainedFileCountLimit,
-                    this.Encoding,
-                    this.Hooks,
-                    this.RetainedFileTimeLimit);
+                Configuration.WriteTo.File(
+                    Path,
+                    MinimumLevel,
+                    OutputTemplate,
+                    FormatProvider,
+                    FileSizeLimitBytes,
+                    LevelSwitch,
+                    Buffered,
+                    Shared,
+                    FlushToDiskInterval,
+                    RollingInterval,
+                    RollOnFileSizeLimit,
+                    RetainedFileCountLimit,
+                    Encoding,
+                    Hooks,
+                    RetainedFileTimeLimit);
 
                 break;
 
-            case nameof(this.ExpressionTemplate):
+            case nameof(Formatter):
 
-                this.Configuration.WriteTo.File(
-                    new ExpressionTemplate(this.ExpressionTemplate),
-                    this.Path,
-                    this.MinimumLevel,
-                    this.FileSizeLimitBytes,
-                    this.LevelSwitch,
-                    this.Buffered,
-                    this.Shared,
-                    this.FlushToDiskInterval,
-                    this.RollingInterval,
-                    this.RollOnFileSizeLimit,
-                    this.RetainedFileCountLimit,
-                    this.Encoding,
-                    this.Hooks,
-                    this.RetainedFileTimeLimit);
+                Configuration.WriteTo.File(
+                    Formatter,
+                    Path,
+                    MinimumLevel,
+                    FileSizeLimitBytes,
+                    LevelSwitch,
+                    Buffered,
+                    Shared,
+                    FlushToDiskInterval,
+                    RollingInterval,
+                    RollOnFileSizeLimit,
+                    RetainedFileCountLimit,
+                    Encoding,
+                    Hooks,
+                    RetainedFileTimeLimit);
+
+                break;
+
+            case nameof(ExpressionTemplate):
+
+                Configuration.WriteTo.File(
+                    new ExpressionTemplate(ExpressionTemplate),
+                    Path,
+                    MinimumLevel,
+                    FileSizeLimitBytes,
+                    LevelSwitch,
+                    Buffered,
+                    Shared,
+                    FlushToDiskInterval,
+                    RollingInterval,
+                    RollOnFileSizeLimit,
+                    RetainedFileCountLimit,
+                    Encoding,
+                    Hooks,
+                    RetainedFileTimeLimit);
 
                 break;
 
             default:
 
-                throw new InvalidOperationException($"Unknown parameter set name: \"{this.ParameterSetName}\".");
+                throw new InvalidOperationException($"Unknown parameter set name: \"{ParameterSetName}\".");
         }
 
-        this.WriteObject(this.Configuration);
+        WriteObject(Configuration);
     }
 }

@@ -23,17 +23,13 @@ public class SetSerilogDefaultLoggerCommand : PSCmdlet
     {
         if (Log.Logger == Serilog.Core.Logger.None)
         {
-            Log.Logger = this.Logger;
+            Log.Logger = Logger;
         }
         else
         {
-            this.WriteError(new ErrorRecord(
-                new InvalidOperationException("The default logger is already set."),
-                "DefaultLoggerAlreadySet",
-                ErrorCategory.InvalidOperation,
-                null));
+            WriteError(new ErrorRecord(new InvalidOperationException("The default logger is already set."), "DefaultLoggerAlreadySet", ErrorCategory.InvalidOperation, null));
         }
 
-        this.WriteObject(this.Logger);
+        WriteObject(Logger);
     }
 }
