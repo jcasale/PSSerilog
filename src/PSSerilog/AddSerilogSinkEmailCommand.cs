@@ -140,62 +140,62 @@ public class AddSerilogSinkEmailCommand : PSCmdlet
     {
         var options = new EmailSinkOptions
         {
-            From = this.From,
-            To = [.. this.To],
-            Host = this.MailServer,
-            Credentials = this.Credentials,
-            IsBodyHtml = this.IsBodyHtml,
-            ServerCertificateValidationCallback = this.ServerCertificateValidationCallback
+            From = From,
+            To = [.. To],
+            Host = MailServer,
+            Credentials = Credentials,
+            IsBodyHtml = IsBodyHtml,
+            ServerCertificateValidationCallback = ServerCertificateValidationCallback
         };
 
-        if (this.Port is not null)
+        if (Port is not null)
         {
-            options.Port = this.Port.Value;
+            options.Port = Port.Value;
         }
 
-        if (!string.IsNullOrWhiteSpace(this.Subject))
+        if (!string.IsNullOrWhiteSpace(Subject))
         {
-            options.Subject = new MessageTemplateTextFormatter(this.Subject, this.FormatProvider);
+            options.Subject = new MessageTemplateTextFormatter(Subject, FormatProvider);
         }
 
-        if (!string.IsNullOrWhiteSpace(this.Body))
+        if (!string.IsNullOrWhiteSpace(Body))
         {
-            options.Body = new MessageTemplateTextFormatter(this.Body, this.FormatProvider);
+            options.Body = new MessageTemplateTextFormatter(Body, FormatProvider);
         }
 
-        if (this.ConnectionSecurity is not null)
+        if (ConnectionSecurity is not null)
         {
-            options.ConnectionSecurity = this.ConnectionSecurity.Value;
+            options.ConnectionSecurity = ConnectionSecurity.Value;
         }
 
         var batchingOptions = new BatchingOptions();
 
-        if (this.EagerlyEmitFirstEvent is not null)
+        if (EagerlyEmitFirstEvent is not null)
         {
-            batchingOptions.EagerlyEmitFirstEvent = this.EagerlyEmitFirstEvent.Value;
+            batchingOptions.EagerlyEmitFirstEvent = EagerlyEmitFirstEvent.Value;
         }
 
-        if (this.BatchSizeLimit is not null)
+        if (BatchSizeLimit is not null)
         {
-            batchingOptions.BatchSizeLimit = this.BatchSizeLimit.Value;
+            batchingOptions.BatchSizeLimit = BatchSizeLimit.Value;
         }
 
-        if (this.BufferingTimeLimit is not null)
+        if (BufferingTimeLimit is not null)
         {
-            batchingOptions.BufferingTimeLimit = this.BufferingTimeLimit.Value;
+            batchingOptions.BufferingTimeLimit = BufferingTimeLimit.Value;
         }
 
-        if (this.QueueLimit is not null)
+        if (QueueLimit is not null)
         {
-            batchingOptions.QueueLimit = this.QueueLimit.Value;
+            batchingOptions.QueueLimit = QueueLimit.Value;
         }
 
-        this.Configuration.WriteTo.Email(
+        Configuration.WriteTo.Email(
             options,
             batchingOptions,
-            this.RestrictedToMinimumLevel,
-            this.LevelSwitch);
+            RestrictedToMinimumLevel,
+            LevelSwitch);
 
-        this.WriteObject(this.Configuration);
+        WriteObject(Configuration);
     }
 }

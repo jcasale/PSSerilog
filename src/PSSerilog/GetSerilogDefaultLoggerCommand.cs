@@ -9,5 +9,5 @@ using Serilog;
 public class GetSerilogDefaultLoggerCommand : PSCmdlet
 {
     /// <inheritdoc />
-    protected override void ProcessRecord() => this.WriteObject(Log.Logger);
+    protected override void ProcessRecord() => WriteObject(Log.Logger);
 }

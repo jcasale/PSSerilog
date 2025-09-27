@@ -98,53 +98,53 @@ public class AddSerilogSinkEventLogCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        switch (this.ParameterSetName)
+        switch (ParameterSetName)
         {
-            case nameof(this.OutputTemplate):
+            case nameof(OutputTemplate):
 
-                this.Configuration.WriteTo.EventLog(
-                    this.Source,
-                    this.LogName,
-                    this.MachineName,
-                    this.ManageEventSource,
-                    this.OutputTemplate,
-                    this.FormatProvider,
-                    this.MinimumLevel,
-                    this.EventIdProvider);
-
-                break;
-
-            case nameof(this.Formatter):
-
-                this.Configuration.WriteTo.EventLog(
-                    this.Formatter,
-                    this.Source,
-                    this.LogName,
-                    this.MachineName,
-                    this.ManageEventSource,
-                    this.MinimumLevel,
-                    this.EventIdProvider);
+                Configuration.WriteTo.EventLog(
+                    Source,
+                    LogName,
+                    MachineName,
+                    ManageEventSource,
+                    OutputTemplate,
+                    FormatProvider,
+                    MinimumLevel,
+                    EventIdProvider);
 
                 break;
 
-            case nameof(this.ExpressionTemplate):
+            case nameof(Formatter):
 
-                this.Configuration.WriteTo.EventLog(
-                    new ExpressionTemplate(this.ExpressionTemplate),
-                    this.Source,
-                    this.LogName,
-                    this.MachineName,
-                    this.ManageEventSource,
-                    this.MinimumLevel,
-                    this.EventIdProvider);
+                Configuration.WriteTo.EventLog(
+                    Formatter,
+                    Source,
+                    LogName,
+                    MachineName,
+                    ManageEventSource,
+                    MinimumLevel,
+                    EventIdProvider);
+
+                break;
+
+            case nameof(ExpressionTemplate):
+
+                Configuration.WriteTo.EventLog(
+                    new ExpressionTemplate(ExpressionTemplate),
+                    Source,
+                    LogName,
+                    MachineName,
+                    ManageEventSource,
+                    MinimumLevel,
+                    EventIdProvider);
 
                 break;
 
             default:
 
-                throw new InvalidOperationException($"Unknown parameter set name: \"{this.ParameterSetName}\".");
+                throw new InvalidOperationException($"Unknown parameter set name: \"{ParameterSetName}\".");
         }
 
-        this.WriteObject(this.Configuration);
+        WriteObject(Configuration);
     }
 }

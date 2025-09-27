@@ -37,8 +37,8 @@ public class NewSerilogLogContextCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        var context = LogContext.PushProperty(this.Name, this.Value, this.DestructureObjects);
+        var context = LogContext.PushProperty(Name, Value, DestructureObjects);
 
-        this.WriteObject(context);
+        WriteObject(context);
     }
 }

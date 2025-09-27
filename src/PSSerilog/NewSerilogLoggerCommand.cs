@@ -31,13 +31,13 @@ public class NewSerilogLoggerCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        var logger = this.ParameterSetName switch
+        var logger = ParameterSetName switch
         {
-            ParameterAttribute.AllParameterSets => this.Configuration.CreateLogger(),
-            nameof(this.Name) => this.Configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, this.Name),
-            _ => throw new InvalidOperationException($"Unknown parameter set name: \"{this.ParameterSetName}\".")
+            ParameterAttribute.AllParameterSets => Configuration.CreateLogger(),
+            nameof(Name) => Configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, Name),
+            _ => throw new InvalidOperationException($"Unknown parameter set name: \"{ParameterSetName}\".")
         };
 
-        this.WriteObject(logger);
+        WriteObject(logger);
     }
 }

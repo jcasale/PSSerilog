@@ -94,46 +94,46 @@ public class AddSerilogSinkConsoleCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        switch (this.ParameterSetName)
+        switch (ParameterSetName)
         {
-            case nameof(this.OutputTemplate):
+            case nameof(OutputTemplate):
 
-                this.Configuration.WriteTo.Console(
-                    this.MinimumLevel,
-                    this.OutputTemplate,
-                    this.FormatProvider,
-                    this.LevelSwitch,
-                    this.StandardErrorFromLevel,
-                    this.Theme,
-                    this.ApplyThemeToRedirectedOutput);
-
-                break;
-
-            case nameof(this.Formatter):
-
-                this.Configuration.WriteTo.Console(
-                    this.Formatter,
-                    this.MinimumLevel,
-                    this.LevelSwitch,
-                    this.StandardErrorFromLevel);
+                Configuration.WriteTo.Console(
+                    MinimumLevel,
+                    OutputTemplate,
+                    FormatProvider,
+                    LevelSwitch,
+                    StandardErrorFromLevel,
+                    Theme,
+                    ApplyThemeToRedirectedOutput);
 
                 break;
 
-            case nameof(this.ExpressionTemplate):
+            case nameof(Formatter):
 
-                this.Configuration.WriteTo.Console(
-                    new ExpressionTemplate(this.ExpressionTemplate),
-                    this.MinimumLevel,
-                    this.LevelSwitch,
-                    this.StandardErrorFromLevel);
+                Configuration.WriteTo.Console(
+                    Formatter,
+                    MinimumLevel,
+                    LevelSwitch,
+                    StandardErrorFromLevel);
+
+                break;
+
+            case nameof(ExpressionTemplate):
+
+                Configuration.WriteTo.Console(
+                    new ExpressionTemplate(ExpressionTemplate),
+                    MinimumLevel,
+                    LevelSwitch,
+                    StandardErrorFromLevel);
 
                 break;
 
             default:
 
-                throw new InvalidOperationException($"Unknown parameter set name: \"{this.ParameterSetName}\".");
+                throw new InvalidOperationException($"Unknown parameter set name: \"{ParameterSetName}\".");
         }
 
-        this.WriteObject(this.Configuration);
+        WriteObject(Configuration);
     }
 }

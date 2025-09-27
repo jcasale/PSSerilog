@@ -59,42 +59,42 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
     {
         var configuration = new LoggerConfiguration();
 
-        if (this.LogContext.IsPresent)
+        if (LogContext.IsPresent)
         {
             configuration.Enrich.FromLogContext();
         }
 
-        if (this.MachineName.IsPresent)
+        if (MachineName.IsPresent)
         {
             configuration.Enrich.WithMachineName();
         }
 
-        if (this.EnvironmentUserName.IsPresent)
+        if (EnvironmentUserName.IsPresent)
         {
             configuration.Enrich.WithEnvironmentUserName();
         }
 
-        if (this.ProcessId.IsPresent)
+        if (ProcessId.IsPresent)
         {
             configuration.Enrich.WithProcessId();
         }
 
-        if (this.ThreadId.IsPresent)
+        if (ThreadId.IsPresent)
         {
             configuration.Enrich.WithThreadId();
         }
 
-        if (this.Properties is not null)
+        if (Properties is not null)
         {
-            foreach (DictionaryEntry entry in this.Properties)
+            foreach (DictionaryEntry entry in Properties)
             {
                 configuration.Enrich.WithProperty(entry.Key.ToString(), entry.Value);
             }
         }
 
-        if (this.MinimumLevel is not null)
+        if (MinimumLevel is not null)
         {
-            switch (this.MinimumLevel.Value)
+            switch (MinimumLevel.Value)
             {
                 case LogEventLevel.Verbose:
 
@@ -138,6 +138,6 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
             }
         }
 
-        this.WriteObject(configuration);
+        WriteObject(configuration);
     }
 }

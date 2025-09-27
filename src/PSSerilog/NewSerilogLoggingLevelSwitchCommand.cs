@@ -19,10 +19,10 @@ public class NewSerilogLoggingLevelSwitchCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        var levelSwitch = this.MinimumLevel is null
+        var levelSwitch = MinimumLevel is null
             ? new LoggingLevelSwitch()
-            : new LoggingLevelSwitch(this.MinimumLevel.Value);
+            : new LoggingLevelSwitch(MinimumLevel.Value);
 
-        this.WriteObject(levelSwitch);
+        WriteObject(levelSwitch);
     }
 }
