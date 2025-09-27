@@ -27,11 +27,7 @@ public class SetSerilogDefaultLoggerCommand : PSCmdlet
         }
         else
         {
-            WriteError(new ErrorRecord(
-                new InvalidOperationException("The default logger is already set."),
-                "DefaultLoggerAlreadySet",
-                ErrorCategory.InvalidOperation,
-                null));
+            WriteError(new ErrorRecord(new InvalidOperationException("The default logger is already set."), "DefaultLoggerAlreadySet", ErrorCategory.InvalidOperation, null));
         }
 
         WriteObject(Logger);
