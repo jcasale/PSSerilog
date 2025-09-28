@@ -20,7 +20,9 @@ public class GetSerilogDefaultLoggerCommand : PSCmdlet
     {
         if (ExcludeSilentLogger.IsPresent && Log.Logger == Serilog.Core.Logger.None)
         {
-            ThrowTerminatingError(new ErrorRecord(new InvalidOperationException("The default logger has not been set."), "DefaultLoggerNotSet", ErrorCategory.InvalidOperation, null));
+            WriteError(new ErrorRecord(new InvalidOperationException("The default logger has not been set."), "DefaultLoggerNotSet", ErrorCategory.InvalidOperation, null));
+
+            return;
         }
 
         WriteObject(Log.Logger);
