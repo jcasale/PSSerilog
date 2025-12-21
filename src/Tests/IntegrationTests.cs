@@ -9,11 +9,10 @@ using System.Management.Automation.Runspaces;
 
 using PSSerilog;
 
-using Xunit;
-
+[TestClass]
 public class IntegrationTests
 {
-    [Fact]
+    [TestMethod]
     public void LoggerWithConsoleSinkShouldWork()
     {
         const string message = "Hello world!";
@@ -76,12 +75,12 @@ public class IntegrationTests
 
         var results = powerShell.Invoke<string>();
 
-        Assert.False(powerShell.HadErrors);
-        Assert.Single(results);
+        Assert.IsFalse(powerShell.HadErrors);
+        Assert.ContainsSingle(results);
         Assert.EndsWith(result, results[0], StringComparison.Ordinal);
     }
 
-    [Fact]
+    [TestMethod]
     public void LoggerWithFileSinkShouldWork()
     {
         const string key = "MyValue";
@@ -152,8 +151,8 @@ public class IntegrationTests
             File.Delete(path);
         }
 
-        Assert.False(powerShell.HadErrors);
-        Assert.Single(results);
+        Assert.IsFalse(powerShell.HadErrors);
+        Assert.ContainsSingle(results);
         Assert.EndsWith(result, results[0], StringComparison.Ordinal);
     }
 }
