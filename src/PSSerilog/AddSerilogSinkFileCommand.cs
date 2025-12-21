@@ -9,7 +9,6 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Sinks.File;
-using Serilog.Templates;
 
 [Cmdlet(VerbsCommon.Add, "SerilogSinkFile", DefaultParameterSetName = nameof(OutputTemplate))]
 [OutputType(typeof(LoggerConfiguration))]
@@ -48,15 +47,6 @@ public class AddSerilogSinkFileCommand : PSCmdlet
         HelpMessage = "The formatter to convert the log events into text for the file.")]
     [ValidateNotNull]
     public ITextFormatter Formatter { get; set; }
-
-    [Parameter(
-        Mandatory = true,
-        ValueFromPipeline = false,
-        ValueFromPipelineByPropertyName = true,
-        ParameterSetName = nameof(ExpressionTemplate),
-        HelpMessage = "The expression template describing the format used to write to the sink.")]
-    [ValidateNotNullOrEmpty]
-    public string ExpressionTemplate { get; set; }
 
     [Parameter(
         Mandatory = true,
@@ -169,26 +159,6 @@ public class AddSerilogSinkFileCommand : PSCmdlet
 
                 Configuration.WriteTo.File(
                     Formatter,
-                    Path,
-                    MinimumLevel,
-                    FileSizeLimitBytes,
-                    LevelSwitch,
-                    Buffered,
-                    Shared,
-                    FlushToDiskInterval,
-                    RollingInterval,
-                    RollOnFileSizeLimit,
-                    RetainedFileCountLimit,
-                    Encoding,
-                    Hooks,
-                    RetainedFileTimeLimit);
-
-                break;
-
-            case nameof(ExpressionTemplate):
-
-                Configuration.WriteTo.File(
-                    new ExpressionTemplate(ExpressionTemplate),
                     Path,
                     MinimumLevel,
                     FileSizeLimitBytes,
