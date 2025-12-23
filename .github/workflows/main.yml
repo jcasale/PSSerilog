@@ -38,13 +38,15 @@ jobs:
           echo "version=$version" >> $env:GITHUB_OUTPUT
 
       - name: Run tests
-        run: dotnet.exe test .\src\PSSerilog.slnx
+        run: |
+          cd .\src
+          dotnet.exe test --project .\Tests\Tests.csproj --configuration Debug --output Detailed
 
       - name: Clean solution
         run: dotnet.exe clean .\src\PSSerilog.slnx --configuration Release
 
       - name: Build project
-        run: dotnet.exe publish .\src\PSSerilog\PSSerilog.csproj --configuration Release --runtime win-x64 --output .\publish
+        run: dotnet.exe publish .\src\PSSerilog\PSSerilog.csproj --configuration Release --output .\publish
 
       - name: Prepare release
         run: Remove-Item ./publish/* -Include *.pdb,*.xml -ErrorAction Stop

@@ -8,7 +8,6 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Sinks.SystemConsole.Themes;
-using Serilog.Templates;
 
 [Cmdlet(VerbsCommon.Add, "SerilogSinkConsole", DefaultParameterSetName = nameof(OutputTemplate))]
 [OutputType(typeof(LoggerConfiguration))]
@@ -64,15 +63,6 @@ public class AddSerilogSinkConsoleCommand : PSCmdlet
     public ITextFormatter Formatter { get; set; }
 
     [Parameter(
-        Mandatory = true,
-        ValueFromPipeline = false,
-        ValueFromPipelineByPropertyName = true,
-        ParameterSetName = nameof(ExpressionTemplate),
-        HelpMessage = "The expression template describing the format used to write to the sink.")]
-    [ValidateNotNullOrEmpty]
-    public string ExpressionTemplate { get; set; }
-
-    [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The minimum level at which events will be passed to sinks. Ignored when level switch is specified.")]
@@ -113,16 +103,6 @@ public class AddSerilogSinkConsoleCommand : PSCmdlet
 
                 Configuration.WriteTo.Console(
                     Formatter,
-                    MinimumLevel,
-                    LevelSwitch,
-                    StandardErrorFromLevel);
-
-                break;
-
-            case nameof(ExpressionTemplate):
-
-                Configuration.WriteTo.Console(
-                    new ExpressionTemplate(ExpressionTemplate),
                     MinimumLevel,
                     LevelSwitch,
                     StandardErrorFromLevel);

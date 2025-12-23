@@ -1,2 +1,2 @@
-[*.cs]
-dotnet_diagnostic.CA2007.severity = none # Consider calling ConfigureAwait on the awaited task.
+﻿[*.cs]
+dotnet_diagnostic.CA1707.severity = none # Identifiers should not contain underscores.
