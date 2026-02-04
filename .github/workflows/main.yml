@@ -74,7 +74,7 @@ jobs:
       - name: Run tests
         run: |
           cd .\src
-          dotnet.exe test --project .\Tests\Tests.csproj --configuration Debug --output Detailed
+          dotnet.exe test --project .\Tests\Tests.csproj --configuration Release --output Detailed
 
       - name: Clean solution
         run: dotnet.exe clean .\src\PSSerilog.slnx --configuration Release

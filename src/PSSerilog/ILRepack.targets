@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="ILRepackerBuild" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="ILRepackerCore;ILRepackerClean" Properties="ILRepackDir=$(OutputPath)" />
+  </Target>
+
+  <Target Name="ILRepackerPublish" AfterTargets="Publish" Condition="'$(Configuration)' == 'Release'">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="ILRepackerCore;ILRepackerClean" Properties="ILRepackDir=$(PublishDir)" />
+  </Target>
+
+  <Target Name="ILRepackerCore">
+    <PropertyGroup>
+      <ILRepackDir Condition="'$(ILRepackDir)' == ''">$(OutputPath)</ILRepackDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ILRepackInputAssemblies Include="$(ILRepackDir)$(TargetName)$(TargetExt)" />
+      <ILRepackInputAssemblies Include="$(ILRepackDir)*.dll" Exclude="$(ILRepackDir)$(TargetName)$(TargetExt);$(ILRepackDir)System.Management.Automation.dll" />
+    </ItemGroup>
+
+    <ILRepack
+      Parallel="true"
+      DebugInfo="true"
+      AllowDuplicateResources="false"
+      InputAssemblies="@(ILRepackInputAssemblies)"
+      TargetKind="SameAsPrimaryAssembly"
+      KeyFile="$(KeyFile)"
+      OutputFile="$(ILRepackDir)$(TargetName)$(TargetExt)" />
+  </Target>
+
+  <Target Name="ILRepackerClean">
+    <PropertyGroup>
+      <ILRepackDir Condition="'$(ILRepackDir)' == ''">$(OutputPath)</ILRepackDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ILRepackFilesToDelete Include="$(ILRepackDir)*.dll" Exclude="$(ILRepackDir)$(TargetName)$(TargetExt)" />
+    </ItemGroup>
+    <Delete Files="@(ILRepackFilesToDelete)" />
+
+    <ItemGroup>
+      <ILRepackDirectories Include="$([System.IO.Directory]::GetDirectories('$(ILRepackDir)', '*', System.IO.SearchOption.AllDirectories))" />
+      <ILRepackDirectories>
+        <Files>$([System.IO.Directory]::GetFiles("%(ILRepackDirectories.Identity)", "*", System.IO.SearchOption.AllDirectories).get_Length())</Files>
+      </ILRepackDirectories>
+    </ItemGroup>
+    <RemoveDir Directories="@(ILRepackDirectories)" Condition="%(Files)=='0'" />
+  </Target>
+</Project>

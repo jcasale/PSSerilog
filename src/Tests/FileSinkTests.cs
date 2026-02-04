@@ -50,7 +50,7 @@ public class FileSinkTests
             powerShell
                 .AddStatement()
                 .AddCommand("New-SerilogLoggerConfiguration")
-                .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.MinimumLevel), Serilog.Events.LogEventLevel.Verbose)
+                .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.MinimumLevel), "Verbose")
                 .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.Properties), properties)
                 .AddCommand("Add-SerilogSinkFile")
                 .AddParameter(nameof(AddSerilogSinkFileCommand.Path), path)
