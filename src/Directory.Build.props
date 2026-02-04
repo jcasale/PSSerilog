@@ -9,14 +9,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.221">
+    <PackageReference Include="Meziantou.Analyzer">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556">
+    <PackageReference Include="StyleCop.Analyzers.Unstable">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <Target Name="SetVersionFromGit" BeforeTargets="BeforeBuild">
+    <Exec Command="git.exe describe --tags --long" WorkingDirectory="$(MSBuildProjectDirectory)" ConsoleToMsBuild="true" StandardOutputImportance="Low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitTag" />
+    </Exec>
+
+    <PropertyGroup>
+      <GitTagPattern>^v(((\d+(?:\.\d+)+)(?:-[a-z]+\.\d+)?)-(\d+-g.+))</GitTagPattern>
+      <Version>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups[3].Value)</Version>
+      <AssemblyVersion>$(Version)</AssemblyVersion>
+      <FileVersion>$(Version)</FileVersion>
+      <GitTagSemVer>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups[2].Value)</GitTagSemVer>
+      <GitTagBuildMetadata>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups[4].Value)</GitTagBuildMetadata>
+      <InformationalVersion>$(GitTagSemVer)+$(GitTagBuildMetadata)</InformationalVersion>
+    </PropertyGroup>
+
+    <Message Text="InformationalVersion $(InformationalVersion)" Importance="high" />
+  </Target>
 
 </Project>
