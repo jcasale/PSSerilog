@@ -5,7 +5,7 @@
            Version="$(var.ProductVersion)"
            Manufacturer="Joseph L. Casale"
            UpgradeCode="1be534ed-bed0-4704-baee-78052afff1a5">
-    <SummaryInformation Description="A PowerShell module for logging based on the Serilog library." Comments="PSSerilog v$(var.FullVersion)" />
+    <SummaryInformation Description="A PowerShell module for logging based on the Serilog library." Comments="PSSerilog $(var.ProductVersionFull)" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="Data.cab" EmbedCab="yes" CompressionLevel="high" />
 
