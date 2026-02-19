@@ -134,9 +134,9 @@ jobs:
       - name: Test module
         shell: powershell
         run: |
-          $PSVersionTable |Out-String
+          $PSVersionTable
 
-          Get-Module PSSerilog -ListAvailable |fl
+          Get-Module PSSerilog -ListAvailable
 
           $logger = New-SerilogLoggerConfiguration |Add-SerilogSinkConsole |New-SerilogLogger |Set-SerilogDefaultLogger
           $logger.Information('Hello world!')
@@ -144,6 +144,23 @@ jobs:
 
       - name: Publish release
         if: github.ref_type == 'tag'
-        run: gh.exe release create ${{ steps.version.outputs.tag }} --title ${{ steps.version.outputs.tag }} --notes 'PowerShell Serilog logging module.' ps-serilog.msi
+        run: |
+          $arguments = @(
+              'release',
+              'create',
+              '${{ steps.version.outputs.tag }}',
+              '--title',
+              '${{ steps.version.outputs.tag }}',
+              '--notes',
+              'PowerShell Serilog logging module.',
+              'ps-serilog.msi'
+          )
+
+          if ('${{ steps.version.outputs.prerelease }}')
+          {
+              $arguments += '--prerelease'
+          }
+
+          & gh.exe @arguments
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
