@@ -40,7 +40,7 @@
       <ModuleManifestContent>
 @{
   RootModule = 'PSSerilog.dll'
-  ModuleVersion = '$(Version)'
+  ModuleVersion = '$(ModuleVersion)'
   GUID = '407659af-362f-47f3-946b-fc0cf70a94ce'
   Author = 'Joseph L. Casale'
   CompanyName = 'Joseph L. Casale'

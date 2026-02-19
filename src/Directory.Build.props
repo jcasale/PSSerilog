@@ -28,7 +28,11 @@
       <GitTagMajor>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups['major'].Value)</GitTagMajor>
       <GitTagMinor>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups['minor'].Value)</GitTagMinor>
       <GitTagPatch>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups['patch'].Value)</GitTagPatch>
-      <Version Condition="'$(GitTagMajor)' != '' AND '$(GitTagMinor)' != '' AND '$(GitTagPatch)' != ''">$(GitTagMajor).$(GitTagMinor).$(GitTagPatch)</Version>
+      <GitTagBuildMetadata>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups['buildmetadata'].Value)</GitTagBuildMetadata>
+      <GitTagBuildMetadata Condition="'$(GitTagBuildMetadata)' == ''">0</GitTagBuildMetadata>
+      <ModuleVersion Condition="'$(GitTagMajor)' != '' AND '$(GitTagMinor)' != '' AND '$(GitTagPatch)' != ''">$(GitTagMajor).$(GitTagMinor).$(GitTagPatch)</ModuleVersion>
+      <ModuleVersion Condition="'$(ModuleVersion)' == ''">0.0.1</ModuleVersion>
+      <Version Condition="'$(GitTagMajor)' != '' AND '$(GitTagMinor)' != '' AND '$(GitTagPatch)' != ''">$(GitTagMajor).$(GitTagMinor).$(GitTagPatch).$(GitTagBuildMetadata)</Version>
       <AssemblyVersion>$(Version)</AssemblyVersion>
       <FileVersion>$(Version)</FileVersion>
       <InformationalVersion>$([System.Text.RegularExpressions.Regex]::Match($(GitTag), $(GitTagPattern)).Groups[0].Value)</InformationalVersion>
