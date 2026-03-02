@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.1.ReferenceAssemblies" PrivateAssets="All" />
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.Enrichers.Environment" />
@@ -46,7 +50,7 @@
   CompanyName = 'Joseph L. Casale'
   Copyright = '(c) Joseph L. Casale. All rights reserved.'
   Description = 'A PowerShell module for logging based on the Serilog library.'
-  RequiredAssemblies = @('Serilog.dll')
+  RequiredAssemblies = @()
   NestedModules = @()
   FunctionsToExport = @()
   CmdletsToExport = @(

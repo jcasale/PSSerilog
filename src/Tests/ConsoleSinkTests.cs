@@ -45,7 +45,7 @@ public class ConsoleSinkTests
         powerShell
             .AddStatement()
             .AddCommand("New-SerilogLoggerConfiguration")
-            .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.MinimumLevel), Serilog.Events.LogEventLevel.Verbose)
+            .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.MinimumLevel), "Verbose")
             .AddParameter(nameof(NewSerilogLoggerConfigurationCommand.Properties), properties)
             .AddCommand("Add-SerilogSinkConsole")
             .AddParameter(nameof(AddSerilogSinkConsoleCommand.OutputTemplate), outputTemplate)

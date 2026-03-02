@@ -88,7 +88,7 @@ public class BasicLoggerTests
         var debugFileContent = File.ReadAllLines(debugFilePath);
         foreach (var line in debugFileContent)
         {
-            Debug.WriteLine(string.Format(CultureInfo.InvariantCulture, "Debug File: {0}", line));
+            Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Debug File: {0}", line));
         }
 
         var logFileContent = File.ReadAllLines(logFilePath);

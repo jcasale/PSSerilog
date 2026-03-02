@@ -20,9 +20,15 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
+      - name: Setup dotnet
+        id: setup-dotnet
+        uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: src/global.json
 
       - name: Setup wix
         run: |
@@ -74,7 +80,7 @@ jobs:
       - name: Run tests
         run: |
           cd .\src
-          dotnet.exe test --project .\Tests\Tests.csproj --configuration Debug --output Detailed
+          dotnet.exe test --project .\Tests\Tests.csproj --configuration Release --output Detailed
 
       - name: Clean solution
         run: dotnet.exe clean .\src\PSSerilog.slnx --configuration Release
@@ -108,13 +114,18 @@ jobs:
       - name: Validate installer
         run: wix.exe msi validate -sice ICE61 ps-serilog.msi
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload doc artifacts
+        uses: actions/upload-artifact@v7
         with:
-          name: ps-serilog
-          path: |
-            ./docs/
-            ./ps-serilog.msi
+          name: docs
+          path: ./docs/
+          if-no-files-found: error
+
+      - name: Upload msi artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          archive: false
+          path: ./ps-serilog.msi
           if-no-files-found: error
 
       - name: Install msi
@@ -128,9 +139,9 @@ jobs:
       - name: Test module
         shell: powershell
         run: |
-          $PSVersionTable |Out-String
+          $PSVersionTable
 
-          Get-Module PSSerilog -ListAvailable |fl
+          Get-Module PSSerilog -ListAvailable
 
           $logger = New-SerilogLoggerConfiguration |Add-SerilogSinkConsole |New-SerilogLogger |Set-SerilogDefaultLogger
           $logger.Information('Hello world!')
@@ -138,6 +149,23 @@ jobs:
 
       - name: Publish release
         if: github.ref_type == 'tag'
-        run: gh.exe release create ${{ steps.version.outputs.tag }} --title ${{ steps.version.outputs.tag }} --notes 'PowerShell Serilog logging module.' ps-serilog.msi
+        run: |
+          $arguments = @(
+              'release',
+              'create',
+              '${{ steps.version.outputs.tag }}',
+              '--title',
+              '${{ steps.version.outputs.tag }}',
+              '--notes',
+              'PowerShell Serilog logging module.',
+              'ps-serilog.msi'
+          )
+
+          if ('${{ steps.version.outputs.prerelease }}')
+          {
+              $arguments += '--prerelease'
+          }
+
+          & gh.exe @arguments
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
