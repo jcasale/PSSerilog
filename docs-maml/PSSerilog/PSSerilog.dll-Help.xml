@@ -1,0 +1,1646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" schema="maml" xmlns="http://msh">
+  <command:command>
+    <command:details>
+      <command:name>Add-SerilogSinkConsole</command:name>
+      <maml:description>
+        <maml:para>Adds a console sink to the specified logger configuration.</maml:para>
+      </maml:description>
+      <command:verb>Add</command:verb>
+      <command:noun>SerilogSinkConsole</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `Add-SerilogSinkConsole` cmdlet adds a console sink to the specified logger configuration.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-SerilogSinkConsole</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>ApplyThemeToRedirectedOutput</maml:name>
+          <maml:description>
+            <maml:para>Applies the selected or default theme even when output redirection is detected.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Configuration</maml:name>
+          <maml:description>
+            <maml:para>The logging configuration to add the sink to.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>FormatProvider</maml:name>
+          <maml:description>
+            <maml:para>The culture-specific formatting information.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.IFormatProvider</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>LevelSwitch</maml:name>
+          <maml:description>
+            <maml:para>The switch allowing the pass-through minimum level to be changed at runtime.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Core.LoggingLevelSwitch</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>MinimumLevel</maml:name>
+          <maml:description>
+            <maml:para>The minimum level at which events will be passed to sinks. Ignored when level switch is specified.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Events.LogEventLevel</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>OutputTemplate</maml:name>
+          <maml:description>
+            <maml:para>The message template describing the format used to write to the sink.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>StandardErrorFromLevel</maml:name>
+          <maml:description>
+            <maml:para>The level at which events will be written to standard error.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Theme</maml:name>
+          <maml:description>
+            <maml:para>The theme to apply to the styled output.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Sinks.SystemConsole.Themes.ConsoleTheme</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Add-SerilogSinkConsole</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Configuration</maml:name>
+          <maml:description>
+            <maml:para>The logging configuration to add the sink to.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Formatter</maml:name>
+          <maml:description>
+            <maml:para>The formatter to convert the log events into text for the file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.Formatting.ITextFormatter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>LevelSwitch</maml:name>
+          <maml:description>
+            <maml:para>The switch allowing the pass-through minimum level to be changed at runtime.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Core.LoggingLevelSwitch</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>MinimumLevel</maml:name>
+          <maml:description>
+            <maml:para>The minimum level at which events will be passed to sinks. Ignored when level switch is specified.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Events.LogEventLevel</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>StandardErrorFromLevel</maml:name>
+          <maml:description>
+            <maml:para>The level at which events will be written to standard error.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>ApplyThemeToRedirectedOutput</maml:name>
+        <maml:description>
+          <maml:para>Applies the selected or default theme even when output redirection is detected.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Configuration</maml:name>
+        <maml:description>
+          <maml:para>The logging configuration to add the sink to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FormatProvider</maml:name>
+        <maml:description>
+          <maml:para>The culture-specific formatting information.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.IFormatProvider</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Formatter</maml:name>
+        <maml:description>
+          <maml:para>The formatter to convert the log events into text for the file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Serilog.Formatting.ITextFormatter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LevelSwitch</maml:name>
+        <maml:description>
+          <maml:para>The switch allowing the pass-through minimum level to be changed at runtime.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.Core.LoggingLevelSwitch</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>MinimumLevel</maml:name>
+        <maml:description>
+          <maml:para>The minimum level at which events will be passed to sinks. Ignored when level switch is specified.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.Events.LogEventLevel</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>OutputTemplate</maml:name>
+        <maml:description>
+          <maml:para>The message template describing the format used to write to the sink.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>StandardErrorFromLevel</maml:name>
+        <maml:description>
+          <maml:para>The level at which events will be written to standard error.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Theme</maml:name>
+        <maml:description>
+          <maml:para>The theme to apply to the styled output.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.Sinks.SystemConsole.Themes.ConsoleTheme</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging configuration to add the sink to.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The output template string describing the format used to write to the sink.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.IFormatProvider</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The culture-specific formatting information.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Sinks.SystemConsole.Themes.ConsoleTheme</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The theme applied to styled console output.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Indicates whether to apply the theme even when output redirection is detected.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Formatting.ITextFormatter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The text formatter used to convert log events into text.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The minimum log event level the sink accepts.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The switch that controls the minimum level at runtime.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging configuration with the console sink added.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Add a console sink to a logger configuration ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; Add-SerilogSinkConsole -Configuration $configuration
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2: Add a console sink using a custom formatter ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; Add-SerilogSinkConsole -Configuration $configuration -Formatter $formatter
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Add-SerilogSinkFile</command:name>
+      <maml:description>
+        <maml:para>Adds a file sink to the specified logger configuration.</maml:para>
+      </maml:description>
+      <command:verb>Add</command:verb>
+      <command:noun>SerilogSinkFile</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `Add-SerilogSinkFile` cmdlet adds a file sink to the specified logger configuration.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-SerilogSinkFile</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Buffered</maml:name>
+          <maml:description>
+            <maml:para>Enables buffered output flushing.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Configuration</maml:name>
+          <maml:description>
+            <maml:para>The logging configuration to add the sink to.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Encoding</maml:name>
+          <maml:description>
+            <maml:para>The character encoding used to write the text file. The default is UTF-8 without BOM.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Text.Encoding</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>FileSizeLimitBytes</maml:name>
+          <maml:description>
+            <maml:para>The approximate maximum size, in bytes, to which a log file will be allowed to grow. For unrestricted growth, pass null. The default is 1 GB.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.Int64]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>FlushToDiskInterval</maml:name>
+          <maml:description>
+            <maml:para>The flushing interval.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.TimeSpan]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>FormatProvider</maml:name>
+          <maml:description>
+            <maml:para>The culture-specific formatting information.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.IFormatProvider</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Hooks</maml:name>
+          <maml:description>
+            <maml:para>The character encoding used to write the text file. The default is UTF-8 without BOM.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Sinks.File.FileLifecycleHooks</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>LevelSwitch</maml:name>
+          <maml:description>
+            <maml:para>The switch allowing the pass-through minimum level to be changed at runtime.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Core.LoggingLevelSwitch</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>MinimumLevel</maml:name>
+          <maml:description>
+            <maml:para>The minimum level at which events will be passed to sinks. Ignored when level switch is specified.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Events.LogEventLevel</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>OutputTemplate</maml:name>
+          <maml:description>
+            <maml:para>The message template describing the format used to write to the sink.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>The path to the file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RetainedFileCountLimit</maml:name>
+          <maml:description>
+            <maml:para>The maximum number of log files that will be retained, including the current log file. For unlimited retention, pass null. The default is 31.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.Int32]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RetainedFileTimeLimit</maml:name>
+          <maml:description>
+            <maml:para>The maximum time after the end of an interval that a rolling log file will be retained. Must be greater than or equal to 0.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.TimeSpan]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RollingInterval</maml:name>
+          <maml:description>
+            <maml:para>The rolling interval. Defaults to infinite.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.RollingInterval</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RollOnFileSizeLimit</maml:name>
+          <maml:description>
+            <maml:para>Enables rolling on file size limit.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Shared</maml:name>
+          <maml:description>
+            <maml:para>Enables sharing of the output file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Add-SerilogSinkFile</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Buffered</maml:name>
+          <maml:description>
+            <maml:para>Enables buffered output flushing.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Configuration</maml:name>
+          <maml:description>
+            <maml:para>The logging configuration to add the sink to.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Encoding</maml:name>
+          <maml:description>
+            <maml:para>The character encoding used to write the text file. The default is UTF-8 without BOM.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Text.Encoding</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>FileSizeLimitBytes</maml:name>
+          <maml:description>
+            <maml:para>The approximate maximum size, in bytes, to which a log file will be allowed to grow. For unrestricted growth, pass null. The default is 1 GB.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.Int64]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>FlushToDiskInterval</maml:name>
+          <maml:description>
+            <maml:para>The flushing interval.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.TimeSpan]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Formatter</maml:name>
+          <maml:description>
+            <maml:para>The formatter to convert the log events into text for the file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.Formatting.ITextFormatter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Hooks</maml:name>
+          <maml:description>
+            <maml:para>The character encoding used to write the text file. The default is UTF-8 without BOM.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Sinks.File.FileLifecycleHooks</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>LevelSwitch</maml:name>
+          <maml:description>
+            <maml:para>The switch allowing the pass-through minimum level to be changed at runtime.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Core.LoggingLevelSwitch</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>MinimumLevel</maml:name>
+          <maml:description>
+            <maml:para>The minimum level at which events will be passed to sinks. Ignored when level switch is specified.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.Events.LogEventLevel</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>The path to the file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RetainedFileCountLimit</maml:name>
+          <maml:description>
+            <maml:para>The maximum number of log files that will be retained, including the current log file. For unlimited retention, pass null. The default is 31.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.Int32]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RetainedFileTimeLimit</maml:name>
+          <maml:description>
+            <maml:para>The maximum time after the end of an interval that a rolling log file will be retained. Must be greater than or equal to 0.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.TimeSpan]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RollingInterval</maml:name>
+          <maml:description>
+            <maml:para>The rolling interval. Defaults to infinite.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">Serilog.RollingInterval</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RollOnFileSizeLimit</maml:name>
+          <maml:description>
+            <maml:para>Enables rolling on file size limit.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Shared</maml:name>
+          <maml:description>
+            <maml:para>Enables sharing of the output file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Buffered</maml:name>
+        <maml:description>
+          <maml:para>Enables buffered output flushing.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Configuration</maml:name>
+        <maml:description>
+          <maml:para>The logging configuration to add the sink to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Encoding</maml:name>
+        <maml:description>
+          <maml:para>The character encoding used to write the text file. The default is UTF-8 without BOM.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Text.Encoding</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FileSizeLimitBytes</maml:name>
+        <maml:description>
+          <maml:para>The approximate maximum size, in bytes, to which a log file will be allowed to grow. For unrestricted growth, pass null. The default is 1 GB.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.Int64]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FlushToDiskInterval</maml:name>
+        <maml:description>
+          <maml:para>The flushing interval.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.TimeSpan]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FormatProvider</maml:name>
+        <maml:description>
+          <maml:para>The culture-specific formatting information.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.IFormatProvider</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Formatter</maml:name>
+        <maml:description>
+          <maml:para>The formatter to convert the log events into text for the file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Serilog.Formatting.ITextFormatter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Hooks</maml:name>
+        <maml:description>
+          <maml:para>The character encoding used to write the text file. The default is UTF-8 without BOM.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.Sinks.File.FileLifecycleHooks</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LevelSwitch</maml:name>
+        <maml:description>
+          <maml:para>The switch allowing the pass-through minimum level to be changed at runtime.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.Core.LoggingLevelSwitch</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>MinimumLevel</maml:name>
+        <maml:description>
+          <maml:para>The minimum level at which events will be passed to sinks. Ignored when level switch is specified.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.Events.LogEventLevel</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>OutputTemplate</maml:name>
+        <maml:description>
+          <maml:para>The message template describing the format used to write to the sink.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>The path to the file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>RetainedFileCountLimit</maml:name>
+        <maml:description>
+          <maml:para>The maximum number of log files that will be retained, including the current log file. For unlimited retention, pass null. The default is 31.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.Int32]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>RetainedFileTimeLimit</maml:name>
+        <maml:description>
+          <maml:para>The maximum time after the end of an interval that a rolling log file will be retained. Must be greater than or equal to 0.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[System.TimeSpan]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>RollingInterval</maml:name>
+        <maml:description>
+          <maml:para>The rolling interval. Defaults to infinite.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">Serilog.RollingInterval</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>RollOnFileSizeLimit</maml:name>
+        <maml:description>
+          <maml:para>Enables rolling on file size limit.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Shared</maml:name>
+        <maml:description>
+          <maml:para>Enables sharing of the output file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging configuration to add the sink to.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The path to the log file, or the output template string describing the format used to write to the sink.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.IFormatProvider</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The culture-specific formatting information.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Formatting.ITextFormatter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The text formatter used to convert log events into text.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The minimum log event level the sink accepts.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Int64</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The upper size limit in bytes for a log file.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The switch that controls the minimum level at runtime.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Enables buffered flushing, file sharing, or rolling on file size limit.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.TimeSpan</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The flushing interval, or the maximum time after an interval ends before the sink removes a rolling log file.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.RollingInterval</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The interval at which the sink creates a new log file.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Int32</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The maximum number of log files retained.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Text.Encoding</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The character encoding used to write the log file.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Sinks.File.FileLifecycleHooks</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The hooks called during log file lifecycle events.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging configuration with the file sink added.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Add a file sink to a logger configuration ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; Add-SerilogSinkFile -Configuration $configuration -Path $logFilePath
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2: Add a rolling daily file sink with a 7-file retention limit ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; Add-SerilogSinkFile -Configuration $configuration -Path $logFilePath -RollingInterval Day -RetainedFileCountLimit 7
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Close-SerilogDefaultLogger</command:name>
+      <maml:description>
+        <maml:para>Resets Logger to the default and disposes the original if possible.</maml:para>
+      </maml:description>
+      <command:verb>Close</command:verb>
+      <command:noun>SerilogDefaultLogger</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `Close-SerilogDefaultLogger` cmdlet resets `Logger` to the default and disposes the original if possible.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Close-SerilogDefaultLogger</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>System.Object</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>This cmdlet produces no output.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Close the default logger ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; Close-SerilogDefaultLogger
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-SerilogDefaultLogger</command:name>
+      <maml:description>
+        <maml:para>Gets the currently configured logger.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>SerilogDefaultLogger</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `Get-SerilogDefaultLogger` cmdlet gets the currently configured logger from the Serilog static logger.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-SerilogDefaultLogger</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>ExcludeSilentLogger</maml:name>
+          <maml:description>
+            <maml:para>Indicates that this cmdlet throws a terminating error if the static logger has not been overriden from the default "SilentLogger" instance.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>ExcludeSilentLogger</maml:name>
+        <maml:description>
+          <maml:para>Indicates that this cmdlet throws a terminating error if the static logger has not been overriden from the default "SilentLogger" instance.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Causes this cmdlet to throw an error when the static logger remains at its default instance.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.ILogger</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The currently configured Serilog logger instance.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Get the currently configured logger ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; $logger = Get-SerilogDefaultLogger
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2: Get the currently configured logger and throw if the static logger has not been set ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; $logger = Get-SerilogDefaultLogger -ExcludeSilentLogger
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>New-SerilogBasicLogger</command:name>
+      <maml:description>
+        <maml:para>Creates a basic logger with a common configuration.</maml:para>
+      </maml:description>
+      <command:verb>New</command:verb>
+      <command:noun>SerilogBasicLogger</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `New-SerilogBasicLogger` cmdlet creates a basic logger with a common configuration.</maml:para>
+      <maml:para>This cmdlet performs the following functions:</maml:para>
+      <maml:para>* Creates a new Serilog configuration with a console and file sink. * Creates a new Serilog logger. * Returns the logger instance.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SerilogBasicLogger</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>The source context of the logger.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>The path to the log file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>The source context of the logger.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>The path to the log file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The path to the log file, or the source context name of the logger.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.ILogger</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The configured logger instance.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Create a basic logger ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+$logger = New-SerilogBasicLogger -Name MyLogger -Path x:/path/logs/my-logger.log
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>This command creates a new logger with the MyLogger source context and writes log entries to
+the console and the indicated path.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>New-SerilogLogContext</command:name>
+      <maml:description>
+        <maml:para>Creates a new logging context.</maml:para>
+      </maml:description>
+      <command:verb>New</command:verb>
+      <command:noun>SerilogLogContext</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `New-SerilogLogContext` cmdlet creates a new logging context and returns the context so that the caller can dispose it when no longer needed.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SerilogLogContext</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+          <maml:name>DestructureObjects</maml:name>
+          <maml:description>
+            <maml:para>Convert a non-primitive, non-array type to a structure.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>The name of the property.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Value</maml:name>
+          <maml:description>
+            <maml:para>The value of the property.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.Object</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+        <maml:name>DestructureObjects</maml:name>
+        <maml:description>
+          <maml:para>Convert a non-primitive, non-array type to a structure.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>The name of the property.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Value</maml:name>
+        <maml:description>
+          <maml:para>The value of the property.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.Object</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The name of the context property.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Object</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The value of the context property.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Indicates that the cmdlet destructures non-primitive, non-array objects into a structured representation.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>System.IDisposable</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>A handle that removes the property from the log context when disposed.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Call `Dispose` on the returned `IDisposable` to remove the property from the log context. Use a
+`try`/`finally` block to ensure the context is always cleaned up.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Create a logging context for the EventId property and dispose it when no longer needed ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; $context = New-SerilogLogContext -Name EventId -Value 42
+PS&gt; try { $logger.Information('Hello World!') } finally { $context.Dispose() }
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>New-SerilogLogger</command:name>
+      <maml:description>
+        <maml:para>Creates a new logger.</maml:para>
+      </maml:description>
+      <command:verb>New</command:verb>
+      <command:noun>SerilogLogger</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `New-SerilogLogger` cmdlet creates a new logger with an optional source context.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SerilogLogger</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Configuration</maml:name>
+          <maml:description>
+            <maml:para>The logging configuration to create the logger from.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-SerilogLogger</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Configuration</maml:name>
+          <maml:description>
+            <maml:para>The logging configuration to create the logger from.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>The source context of the logger.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Configuration</maml:name>
+        <maml:description>
+          <maml:para>The logging configuration to create the logger from.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Serilog.LoggerConfiguration</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>The source context of the logger.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.String</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging configuration to create the logger from.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The source context name of the logger.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.ILogger</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The configured logger instance.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Create a new logger ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; New-SerilogLogger -Configuration $configuration
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2: Create a new logger with a source context ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; New-SerilogLogger -Configuration $configuration -Name MyLogger
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>New-SerilogLoggerConfiguration</command:name>
+      <maml:description>
+        <maml:para>Creates a new logging configuration.</maml:para>
+      </maml:description>
+      <command:verb>New</command:verb>
+      <command:noun>SerilogLoggerConfiguration</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `New-SerilogLoggerConfiguration` cmdlet creates a new logging configuration.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SerilogLoggerConfiguration</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>EnvironmentUserName</maml:name>
+          <maml:description>
+            <maml:para>Enables the enrichment of log events with the user name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>LogContext</maml:name>
+          <maml:description>
+            <maml:para>Enables the enrichment of log events with properties from log context.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>MachineName</maml:name>
+          <maml:description>
+            <maml:para>Enables the enrichment of log events with the machine name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>MinimumLevel</maml:name>
+          <maml:description>
+            <maml:para>Configures the minimum level at which events will be passed to sinks (default Information level).</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>ProcessId</maml:name>
+          <maml:description>
+            <maml:para>Enables the enrichment of log events with the process id.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Properties</maml:name>
+          <maml:description>
+            <maml:para>Enables the enrichment of log events with properties.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Collections.Hashtable</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>ThreadId</maml:name>
+          <maml:description>
+            <maml:para>Enables the enrichment of log events with the thread id.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>EnvironmentUserName</maml:name>
+        <maml:description>
+          <maml:para>Enables the enrichment of log events with the user name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LogContext</maml:name>
+        <maml:description>
+          <maml:para>Enables the enrichment of log events with properties from log context.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>MachineName</maml:name>
+        <maml:description>
+          <maml:para>Enables the enrichment of log events with the machine name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>MinimumLevel</maml:name>
+        <maml:description>
+          <maml:para>Configures the minimum level at which events will be passed to sinks (default Information level).</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>ProcessId</maml:name>
+        <maml:description>
+          <maml:para>Enables the enrichment of log events with the process id.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Properties</maml:name>
+        <maml:description>
+          <maml:para>Enables the enrichment of log events with properties.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Collections.Hashtable</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>ThreadId</maml:name>
+        <maml:description>
+          <maml:para>Enables the enrichment of log events with the thread id.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The minimum log event level the sinks accept.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Enables one or more log enrichers (log context, machine name, environment user name, process id, or thread id).</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Collections.Hashtable</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>A table of static properties to enrich all log events with.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging configuration instance.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Create a new logging configuration ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; $configuration = New-SerilogLoggerConfiguration
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2: Create a configuration enriched with machine name and log context at the Debug level ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; $configuration = New-SerilogLoggerConfiguration -MinimumLevel Debug -MachineName -LogContext
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>New-SerilogLoggingLevelSwitch</command:name>
+      <maml:description>
+        <maml:para>Creates a new logging level switch.</maml:para>
+      </maml:description>
+      <command:verb>New</command:verb>
+      <command:noun>SerilogLoggingLevelSwitch</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `New-SerilogLoggingLevelSwitch` cmdlet creates a new logging level switch that lets you alter the minimum level at runtime.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SerilogLoggingLevelSwitch</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>MinimumLevel</maml:name>
+          <maml:description>
+            <maml:para>The initial level to which the switch is set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>MinimumLevel</maml:name>
+        <maml:description>
+          <maml:para>The initial level to which the switch is set.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Nullable`1[Serilog.Events.LogEventLevel]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The initial minimum level for the switch.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logging level switch instance.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Create a new logging level switch with an initial level of Verbose ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; $loggingLevelSwitch = New-SerilogLoggingLevelSwitch -MinimumLevel Verbose
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-SerilogDefaultLogger</command:name>
+      <maml:description>
+        <maml:para>Sets the default logger to the specified logger instance.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>SerilogDefaultLogger</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>The `Set-SerilogDefaultLogger` cmdlet sets the default logger to the specified logger instance.</maml:para>
+      <maml:para>Access the default logger by using the `Get-SerilogDefaultLogger` cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-SerilogDefaultLogger</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Logger</maml:name>
+          <maml:description>
+            <maml:para>The logger to set as the default.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Serilog.ILogger</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Logger</maml:name>
+        <maml:description>
+          <maml:para>The logger to set as the default.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Serilog.ILogger</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.ILogger</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logger to set as the default.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>Serilog.ILogger</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>The logger set as the default.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Use `-ErrorAction Stop` to terminate if a default logger is already set, or
+`-ErrorAction SilentlyContinue` to ignore the condition.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1: Set the default logger to the specified instance ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS&gt; Set-SerilogDefaultLogger -Logger $logger
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2: Set the default logger and stop if one was already set ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+$logger = New-SerilogBasicLogger `
+    -Name $name `
+    -Path $path `
+    -ErrorAction Stop |
+  Set-SerilogDefaultLogger -ErrorAction Stop
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 3: Set the default logger and silently continue if one was already set ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+$logger = New-SerilogBasicLogger `
+    -Name $name `
+    -Path $path `
+    -ErrorAction Stop |
+  Set-SerilogDefaultLogger -ErrorAction SilentlyContinue
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+</helpItems>
