@@ -256,43 +256,47 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether to apply the selected or default theme even when output redirection is detected.
+
 ### Serilog.LoggerConfiguration
 
-The logging configuration to add the sink to.
-
-### System.String
-
-The output template string describing the format used to write to the sink.
+You can pipe the logging configuration to add the sink to.
 
 ### System.IFormatProvider
 
-The culture-specific formatting information.
-
-### Serilog.Sinks.SystemConsole.Themes.ConsoleTheme
-
-The theme applied to styled console output.
-
-### System.Management.Automation.SwitchParameter
-
-Indicates whether to apply the theme even when output redirection is detected.
+You can pipe culture-specific formatting information.
 
 ### Serilog.Formatting.ITextFormatter
 
-The text formatter used to convert log events into text.
-
-### Serilog.Events.LogEventLevel
-
-The minimum log event level the sink accepts.
+You can pipe the formatter used to convert log events into text for the sink.
 
 ### Serilog.Core.LoggingLevelSwitch
 
-The switch that controls the minimum level at runtime.
+You can pipe the switch that allows the pass-through minimum level to be changed at runtime.
+
+### Serilog.Events.LogEventLevel
+
+You can pipe the minimum level at which events are passed to sinks.
+
+### System.String
+
+You can pipe the message template describing the format used to write to the sink.
+
+### System.Nullable`1[Serilog.Events.LogEventLevel]
+
+You can pipe the level at which events are written to standard error.
+
+### Serilog.Sinks.SystemConsole.Themes.ConsoleTheme
+
+You can pipe the theme to apply to styled output.
 
 ## OUTPUTS
 
 ### Serilog.LoggerConfiguration
 
-The logging configuration with the console sink added.
+Returns the logging configuration after adding the console sink.
 
 ## NOTES
 

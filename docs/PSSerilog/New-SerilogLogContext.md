@@ -115,23 +115,23 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether to convert a non-primitive, non-array value to a structure.
+
 ### System.String
 
-The name of the context property.
+You can pipe the name of the property.
 
 ### System.Object
 
-The value of the context property.
-
-### System.Management.Automation.SwitchParameter
-
-Indicates that the cmdlet destructures non-primitive, non-array objects into a structured representation.
+You can pipe the value of the property.
 
 ## OUTPUTS
 
 ### System.IDisposable
 
-A handle that removes the property from the log context when disposed.
+Returns a handle that removes the property from the log context when disposed.
 
 ## NOTES
 

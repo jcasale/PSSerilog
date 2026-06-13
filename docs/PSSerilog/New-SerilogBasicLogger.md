@@ -103,13 +103,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 
-The path to the log file, or the source context name of the logger.
+You can pipe the source context of the logger.
+
+### System.String
+
+You can pipe the path to the log file.
 
 ## OUTPUTS
 
 ### Serilog.ILogger
 
-The configured logger instance.
+Returns the configured logger.
 
 ## NOTES
 

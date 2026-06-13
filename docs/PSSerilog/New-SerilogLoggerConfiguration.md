@@ -204,23 +204,39 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Serilog.Events.LogEventLevel
+### System.Management.Automation.SwitchParameter
 
-The minimum log event level the sinks accept.
+You can pipe a value indicating whether to enrich log events with the user name.
 
 ### System.Management.Automation.SwitchParameter
 
-Enables one or more log enrichers (log context, machine name, environment user name, process id, or thread id).
+You can pipe a value indicating whether to enrich log events with properties from log context.
+
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether to enrich log events with the machine name.
+
+### System.Nullable`1[Serilog.Events.LogEventLevel]
+
+You can pipe the minimum level at which events are passed to sinks.
+
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether to enrich log events with the process id.
 
 ### System.Collections.Hashtable
 
-A table of static properties to enrich all log events with.
+You can pipe properties to enrich log events with.
+
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether to enrich log events with the thread id.
 
 ## OUTPUTS
 
 ### Serilog.LoggerConfiguration
 
-The logging configuration instance.
+Returns a logging configuration for further configuration or logger creation.
 
 ## NOTES
 

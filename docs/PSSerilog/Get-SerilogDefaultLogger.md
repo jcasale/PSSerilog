@@ -79,13 +79,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Management.Automation.SwitchParameter
 
-Causes this cmdlet to throw an error when the static logger remains at its default instance.
+You can pipe a value indicating whether to throw a terminating error when the static logger remains at its default instance.
 
 ## OUTPUTS
 
 ### Serilog.ILogger
 
-The currently configured Serilog logger instance.
+Returns the currently configured default logger.
 
 ## NOTES
 
