@@ -52,9 +52,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### None
 
-This cmdlet produces no output.
+This cmdlet does not return output.
 
 ## NOTES
 

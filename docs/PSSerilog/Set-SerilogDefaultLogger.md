@@ -95,13 +95,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Serilog.ILogger
 
-The logger to set as the default.
+You can pipe the logger to set as the default.
 
 ## OUTPUTS
 
 ### Serilog.ILogger
 
-The logger set as the default.
+Returns the logger set as default.
 
 ## NOTES
 

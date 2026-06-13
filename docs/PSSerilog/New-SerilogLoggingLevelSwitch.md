@@ -72,15 +72,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Serilog.Events.LogEventLevel
+### System.Nullable`1[Serilog.Events.LogEventLevel]
 
-The initial minimum level for the switch.
+You can pipe the initial level to which the switch is set.
 
 ## OUTPUTS
 
 ### Serilog.Core.LoggingLevelSwitch
 
-The logging level switch instance.
+Returns the level switch with the requested initial minimum level.
 
 ## NOTES
 

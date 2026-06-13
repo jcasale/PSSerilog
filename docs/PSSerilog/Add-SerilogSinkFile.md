@@ -406,7 +406,7 @@ Enables sharing of the output file.
 ```yaml
 Type: System.Management.Automation.SwitchParameter
 DefaultValue: ''
-SupportsWildcasks: false
+SupportsWildcards: false
 Aliases: []
 ParameterSets:
 - Name: (All)
@@ -429,63 +429,79 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Serilog.LoggerConfiguration
-
-The logging configuration to add the sink to.
-
-### System.String
-
-The path to the log file, or the output template string describing the format used to write to the sink.
-
-### System.IFormatProvider
-
-The culture-specific formatting information.
-
-### Serilog.Formatting.ITextFormatter
-
-The text formatter used to convert log events into text.
-
-### Serilog.Events.LogEventLevel
-
-The minimum log event level the sink accepts.
-
-### System.Int64
-
-The upper size limit in bytes for a log file.
-
-### Serilog.Core.LoggingLevelSwitch
-
-The switch that controls the minimum level at runtime.
-
 ### System.Management.Automation.SwitchParameter
 
-Enables buffered flushing, file sharing, or rolling on file size limit.
+You can pipe a value indicating whether buffered output flushing is enabled.
 
-### System.TimeSpan
+### Serilog.LoggerConfiguration
 
-The flushing interval, or the maximum time after an interval ends before the sink removes a rolling log file.
-
-### Serilog.RollingInterval
-
-The interval at which the sink creates a new log file.
-
-### System.Int32
-
-The maximum number of log files retained.
+You can pipe the logging configuration to add the sink to.
 
 ### System.Text.Encoding
 
-The character encoding used to write the log file.
+You can pipe the character encoding used to write the text file.
+
+### System.Nullable`1[System.Int64]
+
+You can pipe the approximate maximum size, in bytes, to which a log file can grow.
+
+### System.Nullable`1[System.TimeSpan]
+
+You can pipe the flushing interval.
+
+### System.IFormatProvider
+
+You can pipe culture-specific formatting information.
+
+### Serilog.Formatting.ITextFormatter
+
+You can pipe the formatter used to convert log events into text for the file.
 
 ### Serilog.Sinks.File.FileLifecycleHooks
 
-The hooks called during log file lifecycle events.
+You can pipe hooks called during log file lifecycle events.
+
+### Serilog.Core.LoggingLevelSwitch
+
+You can pipe the switch that allows the pass-through minimum level to be changed at runtime.
+
+### Serilog.Events.LogEventLevel
+
+You can pipe the minimum level at which events are passed to sinks.
+
+### System.String
+
+You can pipe the message template describing the format used to write to the sink.
+
+### System.String
+
+You can pipe the path to the file.
+
+### System.Nullable`1[System.Int32]
+
+You can pipe the maximum number of log files to retain.
+
+### System.Nullable`1[System.TimeSpan]
+
+You can pipe the maximum time after the end of an interval that a rolling log file is retained.
+
+### Serilog.RollingInterval
+
+You can pipe the rolling interval.
+
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether rolling on file size limit is enabled.
+
+### System.Management.Automation.SwitchParameter
+
+You can pipe a value indicating whether sharing of the output file is enabled.
 
 ## OUTPUTS
 
 ### Serilog.LoggerConfiguration
 
-The logging configuration with the file sink added.
+Returns the logging configuration after adding the file sink.
 
 ## NOTES
 

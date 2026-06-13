@@ -179,18 +179,18 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <dev:name>Serilog.LoggerConfiguration</dev:name>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logging configuration to add the sink to.</maml:para>
+          <maml:para>You can pipe a value indicating whether to apply the selected or default theme even when output redirection is detected.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
         <dev:type>
-          <dev:name>System.String</dev:name>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The output template string describing the format used to write to the sink.</maml:para>
+          <maml:para>You can pipe the logging configuration to add the sink to.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -198,23 +198,7 @@
           <dev:name>System.IFormatProvider</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The culture-specific formatting information.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>Serilog.Sinks.SystemConsole.Themes.ConsoleTheme</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The theme applied to styled console output.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>Indicates whether to apply the theme even when output redirection is detected.</maml:para>
+          <maml:para>You can pipe culture-specific formatting information.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -222,15 +206,7 @@
           <dev:name>Serilog.Formatting.ITextFormatter</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The text formatter used to convert log events into text.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>Serilog.Events.LogEventLevel</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The minimum log event level the sink accepts.</maml:para>
+          <maml:para>You can pipe the formatter used to convert log events into text for the sink.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -238,7 +214,39 @@
           <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The switch that controls the minimum level at runtime.</maml:para>
+          <maml:para>You can pipe the switch that allows the pass-through minimum level to be changed at runtime.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the minimum level at which events are passed to sinks.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the message template describing the format used to write to the sink.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Nullable`1</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the level at which events are written to standard error.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Sinks.SystemConsole.Themes.ConsoleTheme</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the theme to apply to styled output.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -248,7 +256,7 @@
           <dev:name>Serilog.LoggerConfiguration</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logging configuration with the console sink added.</maml:para>
+          <maml:para>Returns the logging configuration after adding the console sink.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -647,90 +655,18 @@ PS&gt; Add-SerilogSinkConsole -Configuration $configuration -Formatter $formatte
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <dev:name>Serilog.LoggerConfiguration</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The logging configuration to add the sink to.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>System.String</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The path to the log file, or the output template string describing the format used to write to the sink.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>System.IFormatProvider</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The culture-specific formatting information.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>Serilog.Formatting.ITextFormatter</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The text formatter used to convert log events into text.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>Serilog.Events.LogEventLevel</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The minimum log event level the sink accepts.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>System.Int64</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The upper size limit in bytes for a log file.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The switch that controls the minimum level at runtime.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
           <dev:name>System.Management.Automation.SwitchParameter</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>Enables buffered flushing, file sharing, or rolling on file size limit.</maml:para>
+          <maml:para>You can pipe a value indicating whether buffered output flushing is enabled.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
         <dev:type>
-          <dev:name>System.TimeSpan</dev:name>
+          <dev:name>Serilog.LoggerConfiguration</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The flushing interval, or the maximum time after an interval ends before the sink removes a rolling log file.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>Serilog.RollingInterval</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The interval at which the sink creates a new log file.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>System.Int32</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>The maximum number of log files retained.</maml:para>
+          <maml:para>You can pipe the logging configuration to add the sink to.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -738,7 +674,39 @@ PS&gt; Add-SerilogSinkConsole -Configuration $configuration -Formatter $formatte
           <dev:name>System.Text.Encoding</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The character encoding used to write the log file.</maml:para>
+          <maml:para>You can pipe the character encoding used to write the text file.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Nullable`1</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the approximate maximum size, in bytes, to which a log file can grow.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Nullable`1</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the flushing interval.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.IFormatProvider</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe culture-specific formatting information.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Formatting.ITextFormatter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the formatter used to convert log events into text for the file.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -746,7 +714,79 @@ PS&gt; Add-SerilogSinkConsole -Configuration $configuration -Formatter $formatte
           <dev:name>Serilog.Sinks.File.FileLifecycleHooks</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The hooks called during log file lifecycle events.</maml:para>
+          <maml:para>You can pipe hooks called during log file lifecycle events.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the switch that allows the pass-through minimum level to be changed at runtime.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the minimum level at which events are passed to sinks.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the message template describing the format used to write to the sink.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the path to the file.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Nullable`1</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the maximum number of log files to retain.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Nullable`1</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the maximum time after the end of an interval that a rolling log file is retained.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>Serilog.RollingInterval</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the rolling interval.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe a value indicating whether rolling on file size limit is enabled.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe a value indicating whether sharing of the output file is enabled.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -756,7 +796,7 @@ PS&gt; Add-SerilogSinkConsole -Configuration $configuration -Formatter $formatte
           <dev:name>Serilog.LoggerConfiguration</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logging configuration with the file sink added.</maml:para>
+          <maml:para>Returns the logging configuration after adding the file sink.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -816,10 +856,10 @@ PS&gt; Add-SerilogSinkFile -Configuration $configuration -Path $logFilePath -Rol
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <dev:name>System.Object</dev:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>This cmdlet produces no output.</maml:para>
+          <maml:para>This cmdlet does not return output.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -886,7 +926,7 @@ PS&gt; Close-SerilogDefaultLogger
           <dev:name>System.Management.Automation.SwitchParameter</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>Causes this cmdlet to throw an error when the static logger remains at its default instance.</maml:para>
+          <maml:para>You can pipe a value indicating whether to throw a terminating error when the static logger remains at its default instance.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -896,7 +936,7 @@ PS&gt; Close-SerilogDefaultLogger
           <dev:name>Serilog.ILogger</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The currently configured Serilog logger instance.</maml:para>
+          <maml:para>Returns the currently configured default logger.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -989,7 +1029,15 @@ PS&gt; $logger = Get-SerilogDefaultLogger -ExcludeSilentLogger
           <dev:name>System.String</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The path to the log file, or the source context name of the logger.</maml:para>
+          <maml:para>You can pipe the source context of the logger.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the path to the log file.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -999,7 +1047,7 @@ PS&gt; $logger = Get-SerilogDefaultLogger -ExcludeSilentLogger
           <dev:name>Serilog.ILogger</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The configured logger instance.</maml:para>
+          <maml:para>Returns the configured logger.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -1094,10 +1142,18 @@ the console and the indicated path.</maml:para>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe a value indicating whether to convert a non-primitive, non-array value to a structure.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
           <dev:name>System.String</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The name of the context property.</maml:para>
+          <maml:para>You can pipe the name of the property.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -1105,15 +1161,7 @@ the console and the indicated path.</maml:para>
           <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The value of the context property.</maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
-        </dev:type>
-        <maml:description>
-          <maml:para>Indicates that the cmdlet destructures non-primitive, non-array objects into a structured representation.</maml:para>
+          <maml:para>You can pipe the value of the property.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -1123,7 +1171,7 @@ the console and the indicated path.</maml:para>
           <dev:name>System.IDisposable</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>A handle that removes the property from the log context when disposed.</maml:para>
+          <maml:para>Returns a handle that removes the property from the log context when disposed.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -1216,7 +1264,7 @@ PS&gt; try { $logger.Information('Hello World!') } finally { $context.Dispose() 
           <dev:name>Serilog.LoggerConfiguration</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logging configuration to create the logger from.</maml:para>
+          <maml:para>You can pipe the logging configuration to create the logger from.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -1224,7 +1272,7 @@ PS&gt; try { $logger.Information('Hello World!') } finally { $context.Dispose() 
           <dev:name>System.String</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The source context name of the logger.</maml:para>
+          <maml:para>You can pipe the source context of the logger.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -1234,7 +1282,7 @@ PS&gt; try { $logger.Information('Hello World!') } finally { $context.Dispose() 
           <dev:name>Serilog.ILogger</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The configured logger instance.</maml:para>
+          <maml:para>Returns the configured logger.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -1392,10 +1440,10 @@ PS&gt; New-SerilogLogger -Configuration $configuration -Name MyLogger
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The minimum log event level the sinks accept.</maml:para>
+          <maml:para>You can pipe a value indicating whether to enrich log events with the user name.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -1403,7 +1451,31 @@ PS&gt; New-SerilogLogger -Configuration $configuration -Name MyLogger
           <dev:name>System.Management.Automation.SwitchParameter</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>Enables one or more log enrichers (log context, machine name, environment user name, process id, or thread id).</maml:para>
+          <maml:para>You can pipe a value indicating whether to enrich log events with properties from log context.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe a value indicating whether to enrich log events with the machine name.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Nullable`1</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe the minimum level at which events are passed to sinks.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe a value indicating whether to enrich log events with the process id.</maml:para>
         </maml:description>
       </command:inputType>
       <command:inputType>
@@ -1411,7 +1483,15 @@ PS&gt; New-SerilogLogger -Configuration $configuration -Name MyLogger
           <dev:name>System.Collections.Hashtable</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>A table of static properties to enrich all log events with.</maml:para>
+          <maml:para>You can pipe properties to enrich log events with.</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Management.Automation.SwitchParameter</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>You can pipe a value indicating whether to enrich log events with the thread id.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -1421,7 +1501,7 @@ PS&gt; New-SerilogLogger -Configuration $configuration -Name MyLogger
           <dev:name>Serilog.LoggerConfiguration</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logging configuration instance.</maml:para>
+          <maml:para>Returns a logging configuration for further configuration or logger creation.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -1495,10 +1575,10 @@ PS&gt; $configuration = New-SerilogLoggerConfiguration -MinimumLevel Debug -Mach
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <dev:name>Serilog.Events.LogEventLevel</dev:name>
+          <dev:name>System.Nullable`1</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The initial minimum level for the switch.</maml:para>
+          <maml:para>You can pipe the initial level to which the switch is set.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -1508,7 +1588,7 @@ PS&gt; $configuration = New-SerilogLoggerConfiguration -MinimumLevel Debug -Mach
           <dev:name>Serilog.Core.LoggingLevelSwitch</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logging level switch instance.</maml:para>
+          <maml:para>Returns the level switch with the requested initial minimum level.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -1576,7 +1656,7 @@ PS&gt; $loggingLevelSwitch = New-SerilogLoggingLevelSwitch -MinimumLevel Verbose
           <dev:name>Serilog.ILogger</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logger to set as the default.</maml:para>
+          <maml:para>You can pipe the logger to set as the default.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -1586,7 +1666,7 @@ PS&gt; $loggingLevelSwitch = New-SerilogLoggingLevelSwitch -MinimumLevel Verbose
           <dev:name>Serilog.ILogger</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para>The logger set as the default.</maml:para>
+          <maml:para>Returns the logger set as default.</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>

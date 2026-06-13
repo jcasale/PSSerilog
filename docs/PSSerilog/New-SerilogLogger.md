@@ -106,17 +106,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Serilog.LoggerConfiguration
 
-The logging configuration to create the logger from.
+You can pipe the logging configuration to create the logger from.
 
 ### System.String
 
-The source context name of the logger.
+You can pipe the source context of the logger.
 
 ## OUTPUTS
 
 ### Serilog.ILogger
 
-The configured logger instance.
+Returns the configured logger.
 
 ## NOTES
 
