@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: Set-SerilogDefaultLogger
 ---
@@ -45,21 +45,25 @@ PS> Set-SerilogDefaultLogger -Logger $logger
 
 ```powershell
 $logger = New-SerilogBasicLogger `
-    -Name $name `
     -Path $path `
     -ErrorAction Stop |
   Set-SerilogDefaultLogger -ErrorAction Stop
 ```
 
+This `Set-SerilogDefaultLogger` cmdlet returns the same logger passed in, regardless of
+whether the cmdlet succeeds.
+
 ### Example 3: Set the default logger and silently continue if one was already set
 
 ```powershell
 $logger = New-SerilogBasicLogger `
-    -Name $name `
     -Path $path `
     -ErrorAction Stop |
   Set-SerilogDefaultLogger -ErrorAction SilentlyContinue
 ```
+
+This `Set-SerilogDefaultLogger` cmdlet returns the same logger passed in, regardless of
+whether the cmdlet succeeds.
 
 ## PARAMETERS
 
@@ -109,3 +113,5 @@ Use `-ErrorAction Stop` to terminate if a default logger is already set, or
 `-ErrorAction SilentlyContinue` to ignore the condition.
 
 ## RELATED LINKS
+
+None.

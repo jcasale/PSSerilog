@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: New-SerilogLoggerConfiguration
 ---
@@ -116,7 +116,7 @@ HelpMessage: ''
 Configures the minimum level at which events will be passed to sinks (default Information level).
 
 ```yaml
-Type: System.Nullable`1[Serilog.Events.LogEventLevel]
+Type: Serilog.Events.LogEventLevel
 DefaultValue: ''
 SupportsWildcards: false
 Aliases: []
@@ -216,7 +216,7 @@ You can pipe a value indicating whether to enrich log events with properties fro
 
 You can pipe a value indicating whether to enrich log events with the machine name.
 
-### System.Nullable`1[Serilog.Events.LogEventLevel]
+### Serilog.Events.LogEventLevel
 
 You can pipe the minimum level at which events are passed to sinks.
 
@@ -240,4 +240,8 @@ Returns a logging configuration for further configuration or logger creation.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.

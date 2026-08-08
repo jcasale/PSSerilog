@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: New-SerilogLogger
 ---
@@ -17,38 +17,41 @@ Creates a new logger.
 
 ## SYNTAX
 
-### __AllParameterSets (Default)
+### Configuration
 
 ```
 New-SerilogLogger [-Configuration] <LoggerConfiguration> [<CommonParameters>]
 ```
 
-### Name
+### SourceContext
 
 ```
-New-SerilogLogger [-Configuration] <LoggerConfiguration> [[-Name] <string>] [<CommonParameters>]
+New-SerilogLogger [-Logger] <ILogger> [[-SourceContext] <string>] [<CommonParameters>]
 ```
 
 ## ALIASES
 
 None.
 
+
 ## DESCRIPTION
 
-The `New-SerilogLogger` cmdlet creates a new logger with an optional source context.
+The `New-SerilogLogger` cmdlet creates a new logger.
+You can create a new root logger using an existing configuration.
+You can also create a new named logger using an existing logger and a source context.
 
 ## EXAMPLES
 
 ### Example 1: Create a new logger
 
 ```powershell
-PS> New-SerilogLogger -Configuration $configuration
+PS> $logger = New-SerilogLogger -Configuration $configuration
 ```
 
 ### Example 2: Create a new logger with a source context
 
 ```powershell
-PS> New-SerilogLogger -Configuration $configuration -Name MyLogger
+PS> $log = New-SerilogLogger -Logger $logger -SourceContext MyLogger
 ```
 
 ## PARAMETERS
@@ -63,7 +66,7 @@ DefaultValue: ''
 SupportsWildcards: false
 Aliases: []
 ParameterSets:
-- Name: (All)
+- Name: Configuration
   Position: 0
   IsRequired: true
   ValueFromPipeline: true
@@ -74,7 +77,28 @@ AcceptedValues: []
 HelpMessage: ''
 ```
 
-### -Name
+### -Logger
+
+The logger to create the new logger from that will be enriched with a source context.
+
+```yaml
+Type: Serilog.ILogger
+DefaultValue: ''
+SupportsWildcards: false
+Aliases: []
+ParameterSets:
+- Name: SourceContext
+  Position: 0
+  IsRequired: true
+  ValueFromPipeline: true
+  ValueFromPipelineByPropertyName: true
+  ValueFromRemainingArguments: false
+DontShow: false
+AcceptedValues: []
+HelpMessage: ''
+```
+
+### -SourceContext
 
 The source context of the logger.
 
@@ -84,7 +108,7 @@ DefaultValue: ''
 SupportsWildcards: false
 Aliases: []
 ParameterSets:
-- Name: Name
+- Name: SourceContext
   Position: 1
   IsRequired: false
   ValueFromPipeline: false
@@ -106,7 +130,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Serilog.LoggerConfiguration
 
-You can pipe the logging configuration to create the logger from.
+You can pipe the logging configuration used to create the logger.
+
+### Serilog.ILogger
+
+You can pipe the root logger used to create the named logger.
 
 ### System.String
 
@@ -120,4 +148,8 @@ Returns the configured logger.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.

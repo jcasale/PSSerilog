@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: Get-SerilogDefaultLogger
 ---
@@ -49,7 +49,7 @@ PS> $logger = Get-SerilogDefaultLogger -ExcludeSilentLogger
 
 ### -ExcludeSilentLogger
 
-Indicates that this cmdlet throws a terminating error if the static logger has not been overriden from the default "SilentLogger" instance.
+Indicates that this cmdlet throws a terminating error if the static logger has not been overridden from the default "SilentLogger" instance.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -89,4 +89,8 @@ Returns the currently configured default logger.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.
