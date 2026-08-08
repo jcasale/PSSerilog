@@ -8,36 +8,16 @@ using System.IO;
 using System.Text;
 
 [TestClass]
-public class BasicLoggerTests
+public sealed class BasicLoggerTests : IDisposable
 {
+    private readonly string _debugFilePath = Path.GetTempFileName();
+    private readonly string _logFilePath = Path.GetTempFileName();
+
+    public TestContext TestContext { get; set; }
+
     [TestMethod]
     public void BasicLogger_ShouldWork()
     {
-        var debugFilePath = Path.GetTempFileName();
-        var logFilePath = Path.GetTempFileName();
-        try
-        {
-            BasicLogger_ShouldWork(debugFilePath, logFilePath);
-        }
-        finally
-        {
-            File.Delete(debugFilePath);
-            File.Delete(logFilePath);
-        }
-    }
-
-    private static void BasicLogger_ShouldWork(string debugFilePath, string logFilePath)
-    {
-        if (string.IsNullOrWhiteSpace(debugFilePath))
-        {
-            throw new ArgumentException("Value cannot be null or whitespace.", nameof(debugFilePath));
-        }
-
-        if (string.IsNullOrWhiteSpace(logFilePath))
-        {
-            throw new ArgumentException("Value cannot be null or whitespace.", nameof(logFilePath));
-        }
-
         var currentDirectory = Directory.GetCurrentDirectory();
         var modulePath = "./PSSerilog.psd1";
         var message = Guid.NewGuid().ToString();
@@ -47,10 +27,10 @@ public class BasicLoggerTests
 
             Import-Module '{modulePath}' -ErrorAction Stop
 
-            $debugFile = [IO.File]::CreateText('{debugFilePath}')
+            $debugFile = [IO.File]::CreateText('{_debugFilePath}')
             [Serilog.Debugging.SelfLog]::Enable([IO.TextWriter]::Synchronized($debugFile))
 
-            $logger = New-SerilogBasicLogger -Path '{logFilePath}' -Name MyLogger
+            $logger = New-SerilogBasicLogger -Path '{_logFilePath}'
 
             $logger.Information('{message}')
 
@@ -85,21 +65,21 @@ public class BasicLoggerTests
 
         process.WaitForExit();
 
-        var debugFileContent = File.ReadAllLines(debugFilePath);
+        var debugFileContent = File.ReadAllLines(_debugFilePath);
         foreach (var line in debugFileContent)
         {
-            Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Debug File: {0}", line));
+            TestContext.WriteLine(string.Format(CultureInfo.InvariantCulture, "Debug File: {0}", line));
         }
 
-        var logFileContent = File.ReadAllLines(logFilePath);
+        var logFileContent = File.ReadAllLines(_logFilePath);
         foreach (var line in logFileContent)
         {
-            Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Log File: {0}", line));
+            TestContext.WriteLine(string.Format(CultureInfo.InvariantCulture, "Log File: {0}", line));
         }
 
         foreach (var line in errorData)
         {
-            Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Stdout: {0}", line));
+            TestContext.WriteLine(string.Format(CultureInfo.InvariantCulture, "Stderr: {0}", line));
         }
 
         Assert.AreEqual(0, process.ExitCode);
@@ -135,5 +115,11 @@ public class BasicLoggerTests
 
             outputData.Enqueue(e.Data);
         }
+    }
+
+    public void Dispose()
+    {
+        File.Delete(_debugFilePath);
+        File.Delete(_logFilePath);
     }
 }

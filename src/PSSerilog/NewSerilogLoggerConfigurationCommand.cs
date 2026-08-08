@@ -16,7 +16,7 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "Configures the minimum level at which events will be passed to sinks (default Information level).")]
     [ValidateNotNull]
-    public LogEventLevel? MinimumLevel { get; set; }
+    public LogEventLevel MinimumLevel { get; set; }
 
     [Parameter(
         ValueFromPipeline = true,
@@ -84,7 +84,7 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
             configuration.Enrich.WithThreadId();
         }
 
-        if (Properties is not null)
+        if (MyInvocation.BoundParameters.ContainsKey(nameof(Properties)))
         {
             foreach (DictionaryEntry entry in Properties)
             {
@@ -92,9 +92,9 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
             }
         }
 
-        if (MinimumLevel is not null)
+        if (MyInvocation.BoundParameters.ContainsKey(nameof(MinimumLevel)))
         {
-            switch (MinimumLevel.Value)
+            switch (MinimumLevel)
             {
                 case LogEventLevel.Verbose:
 
