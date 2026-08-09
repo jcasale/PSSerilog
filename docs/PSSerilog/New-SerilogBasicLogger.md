@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: New-SerilogBasicLogger
 ---
@@ -20,7 +20,7 @@ Creates a basic logger with a common configuration.
 ### __AllParameterSets
 
 ```
-New-SerilogBasicLogger [-Path] <string> [[-Name] <string>] [<CommonParameters>]
+New-SerilogBasicLogger [-Path] <string> [[-OutputTemplate] <string>] [<CommonParameters>]
 ```
 
 ## ALIASES
@@ -42,17 +42,29 @@ This cmdlet performs the following functions:
 ### Example 1: Create a basic logger
 
 ```powershell
-$logger = New-SerilogBasicLogger -Name MyLogger -Path x:/path/logs/my-logger.log
+$logger = New-SerilogBasicLogger -Path x:/path/logs/my-logger.log
 ```
 
-This command creates a new logger with the MyLogger source context and writes log entries to
-the console and the indicated path.
+This command creates a new root logger that writes log entries to the console and
+the specified path.
+
+### Example 2: Create a basic logger with a source context
+
+```powershell
+$logger = New-SerilogBasicLogger -Path x:/path/logs/my-logger.log |
+    Set-SerilogDefaultLogger |
+    New-SerilogLogger -SourceContext MyLogger
+```
+
+This command creates a new root logger that writes log entries to the console and
+the specified path, assigns it to the default static logger, then creates and returns
+a named logger with the MyLogger source context.
 
 ## PARAMETERS
 
-### -Name
+### -OutputTemplate
 
-The source context of the logger.
+The message template describing the format used to write to the sink.
 
 ```yaml
 Type: System.String
@@ -117,4 +129,8 @@ Returns the configured logger.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.

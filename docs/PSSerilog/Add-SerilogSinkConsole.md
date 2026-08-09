@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: Add-SerilogSinkConsole
 ---
@@ -300,4 +300,8 @@ Returns the logging configuration after adding the console sink.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.

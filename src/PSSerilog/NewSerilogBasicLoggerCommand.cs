@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Management.Automation;
 
 using Serilog;
-using Serilog.Core;
 
 [Cmdlet(VerbsCommon.New, "SerilogBasicLogger")]
 [OutputType(typeof(ILogger))]
@@ -24,24 +23,19 @@ public class NewSerilogBasicLoggerCommand : PSCmdlet
         Mandatory = false,
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The source context of the logger.")]
-    public string Name { get; set; }
+        HelpMessage = "The message template describing the format used to write to the sink.")]
+    [ValidateNotNullOrEmpty]
+    public string OutputTemplate { get; set; } = "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{SourceContext}] [{Level}] {Message:l}{NewLine}{Exception}";
 
     protected override void ProcessRecord()
     {
-        var template = string.IsNullOrWhiteSpace(Name)
-            ? "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level}] {Message:l}{NewLine}{Exception}"
-            : "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{SourceContext}] [{Level}] {Message:l}{NewLine}{Exception}";
-
         var configuration = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .Enrich.FromLogContext()
-            .WriteTo.Console(outputTemplate: template, formatProvider: CultureInfo.InvariantCulture)
-            .WriteTo.File(Path, outputTemplate: template, formatProvider: CultureInfo.InvariantCulture);
+            .WriteTo.Console(outputTemplate: OutputTemplate, formatProvider: CultureInfo.InvariantCulture)
+            .WriteTo.File(Path, outputTemplate: OutputTemplate, formatProvider: CultureInfo.InvariantCulture);
 
-        var logger = string.IsNullOrWhiteSpace(Name)
-            ? configuration.CreateLogger()
-            : configuration.CreateLogger().ForContext(Constants.SourceContextPropertyName, Name);
+        var logger = configuration.CreateLogger();
 
         WriteObject(logger);
     }

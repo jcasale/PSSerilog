@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: Add-SerilogSinkFile
 ---
@@ -212,7 +212,7 @@ HelpMessage: ''
 
 ### -Hooks
 
-The character encoding used to write the text file. The default is UTF-8 without BOM.
+Enables hooking into log file lifecycle events, such as when a file is opened or closed for writing.
 
 ```yaml
 Type: Serilog.Sinks.File.FileLifecycleHooks
@@ -505,4 +505,8 @@ Returns the logging configuration after adding the file sink.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.

@@ -4,6 +4,7 @@ using System;
 using System.Management.Automation;
 
 using Serilog;
+using Serilog.Core;
 
 [Cmdlet(VerbsCommon.Get, "SerilogDefaultLogger")]
 [OutputType(typeof(ILogger))]
@@ -18,9 +19,9 @@ public class GetSerilogDefaultLoggerCommand : PSCmdlet
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        if (ExcludeSilentLogger.IsPresent && Log.Logger == Serilog.Core.Logger.None)
+        if (ExcludeSilentLogger.IsPresent && Log.Logger == Logger.None)
         {
-            WriteError(new ErrorRecord(new InvalidOperationException("The default logger has not been set."), "DefaultLoggerNotSet", ErrorCategory.InvalidOperation, null));
+            WriteError(new(new InvalidOperationException("The default logger has not been set."), "DefaultLoggerNotSet", ErrorCategory.InvalidOperation, null));
 
             return;
         }

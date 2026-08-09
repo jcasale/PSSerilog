@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 05-18-2026
+ms.date: 08-08-2026
 PlatyPS schema version: 2024-05-01
 title: New-SerilogLoggingLevelSwitch
 ---
@@ -47,7 +47,7 @@ PS> $loggingLevelSwitch = New-SerilogLoggingLevelSwitch -MinimumLevel Verbose
 The initial level to which the switch is set.
 
 ```yaml
-Type: System.Nullable`1[Serilog.Events.LogEventLevel]
+Type: Serilog.Events.LogEventLevel
 DefaultValue: ''
 SupportsWildcards: false
 Aliases: []
@@ -72,7 +72,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[Serilog.Events.LogEventLevel]
+### Serilog.Events.LogEventLevel
 
 You can pipe the initial level to which the switch is set.
 
@@ -84,4 +84,8 @@ Returns the level switch with the requested initial minimum level.
 
 ## NOTES
 
+None.
+
 ## RELATED LINKS
+
+None.

@@ -66,7 +66,7 @@ public class AddSerilogSinkFileCommand : PSCmdlet
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The approximate maximum size, in bytes, to which a log file will be allowed to grow. For unrestricted growth, pass null. The default is 1 GB.")]
-    public long? FileSizeLimitBytes { get; set; }
+    public long? FileSizeLimitBytes { get; set; } = 1024L * 1024 * 1024;
 
     [Parameter(
         ValueFromPipeline = false,
@@ -120,7 +120,7 @@ public class AddSerilogSinkFileCommand : PSCmdlet
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "The character encoding used to write the text file. The default is UTF-8 without BOM.")]
+        HelpMessage = "Enables hooking into log file lifecycle events, such as when a file is opened or closed for writing.")]
     public FileLifecycleHooks Hooks { get; set; }
 
     [Parameter(

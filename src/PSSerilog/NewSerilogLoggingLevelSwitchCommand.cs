@@ -14,14 +14,14 @@ public class NewSerilogLoggingLevelSwitchCommand : PSCmdlet
         ValueFromPipeline = true,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "The initial level to which the switch is set.")]
-    public LogEventLevel? MinimumLevel { get; set; }
+    public LogEventLevel MinimumLevel { get; set; }
 
     /// <inheritdoc />
     protected override void ProcessRecord()
     {
-        var levelSwitch = MinimumLevel is null
-            ? new LoggingLevelSwitch()
-            : new LoggingLevelSwitch(MinimumLevel.Value);
+        var levelSwitch = MyInvocation.BoundParameters.ContainsKey(nameof(MinimumLevel))
+            ? new LoggingLevelSwitch(MinimumLevel)
+            : new LoggingLevelSwitch();
 
         WriteObject(levelSwitch);
     }

@@ -34,9 +34,8 @@ Get-Help New-SerilogLoggerConfiguration -Full
     ```powershell
     try
     {
-        $name = [IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name)
         $path = [IO.Path]::ChangeExtension($MyInvocation.MyCommand.Path, '.log')
-        $logger = New-SerilogBasicLogger -Name $name -Path $path -ErrorAction Stop
+        $logger = New-SerilogBasicLogger -Path $path -ErrorAction Stop
     }
     catch
     {
@@ -70,17 +69,19 @@ Get-Help New-SerilogLoggerConfiguration -Full
     }
     ```
 
-- Create a basic logger and apply it to the Serilog default static logger:
+- Create a basic root logger, apply that root logger to the Serilog default static logger, and then create a new named logger:
 
     ```powershell
     $name = [IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name)
     $path = [IO.Path]::ChangeExtension($MyInvocation.MyCommand.Path, '.log')
-    $logger = New-SerilogBasicLogger -Name $name -Path $path -ErrorAction Stop |
-        Set-SerilogDefaultLogger -ErrorAction Stop
+    $logger = New-SerilogBasicLogger -Path $path -ErrorAction Stop |
+        Set-SerilogDefaultLogger |
+        New-SerilogLogger -SourceContext $name
 
     try
     {
-        # The other-script.ps1 can call Get-SerilogDefaultLogger to get a logger configured however necessary.
+        # The other-script.ps1 can call Get-SerilogDefaultLogger to get the root logger,
+        # and then use it to create a new named logger.
         & "$PSScriptRoot\other-script.ps1"
     }
     catch
