@@ -26,7 +26,7 @@ New-SerilogLogger [-Configuration] <LoggerConfiguration> [<CommonParameters>]
 ### SourceContext
 
 ```
-New-SerilogLogger [-Logger] <ILogger> [[-SourceContext] <string>] [<CommonParameters>]
+New-SerilogLogger [-Logger] <ILogger> [-SourceContext] <string> [<CommonParameters>]
 ```
 
 ## ALIASES
@@ -110,7 +110,7 @@ Aliases: []
 ParameterSets:
 - Name: SourceContext
   Position: 1
-  IsRequired: false
+  IsRequired: true
   ValueFromPipeline: false
   ValueFromPipelineByPropertyName: true
   ValueFromRemainingArguments: false

@@ -32,6 +32,7 @@ public class NewSerilogLoggerCommand : PSCmdlet
 
     [Parameter(
         Position = 1,
+        Mandatory = true,
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
         ParameterSetName = nameof(SourceContext),
