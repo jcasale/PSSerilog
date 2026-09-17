@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="ILRepack.Lib.MSBuild.Task" Version="2.0.46" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.139" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.259" />
     <PackageVersion Include="Microsoft.PowerShell.5.1.ReferenceAssemblies" Version="1.0.0" />
     <PackageVersion Include="Serilog" Version="4.4.0" />
     <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
