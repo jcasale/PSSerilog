@@ -13,7 +13,7 @@ public class GetSerilogDefaultLoggerCommand : PSCmdlet
     [Parameter(
         ValueFromPipeline = false,
         ValueFromPipelineByPropertyName = true,
-        HelpMessage = "Indicates that this cmdlet throws a terminating error if the static logger has not been overriden from the default \"SilentLogger\" instance.")]
+        HelpMessage = "Indicates that this cmdlet throws a non-terminating error if the static logger has not been overridden from the default \"SilentLogger\" instance.")]
     public SwitchParameter ExcludeSilentLogger { get; set; }
 
     /// <inheritdoc />

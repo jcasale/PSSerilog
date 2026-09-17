@@ -30,6 +30,7 @@ public class SetSerilogDefaultLoggerCommand : PSCmdlet
             WriteError(new(new InvalidOperationException("The default logger is already set."), "DefaultLoggerAlreadySet", ErrorCategory.InvalidOperation, null));
         }
 
+        // Pass the logger through into the pipeline so an assignment completes as expected if the error was handled.
         WriteObject(Logger);
     }
 }
