@@ -4,7 +4,7 @@ external help file: PSSerilog.dll-Help.xml
 HelpUri: ''
 Locale: en-US
 Module Name: PSSerilog
-ms.date: 08-08-2026
+ms.date: 09-17-2026
 PlatyPS schema version: 2024-05-01
 title: New-SerilogBasicLogger
 ---
@@ -20,7 +20,7 @@ Creates a basic logger with a common configuration.
 ### __AllParameterSets
 
 ```
-New-SerilogBasicLogger [-Path] <string> [[-OutputTemplate] <string>] [<CommonParameters>]
+New-SerilogBasicLogger [-Path] <string> [[-SourceContext] <string>] [<CommonParameters>]
 ```
 
 ## ALIASES
@@ -51,37 +51,15 @@ the specified path.
 ### Example 2: Create a basic logger with a source context
 
 ```powershell
-$logger = New-SerilogBasicLogger -Path x:/path/logs/my-logger.log |
-    Set-SerilogDefaultLogger |
-    New-SerilogLogger -SourceContext MyLogger
+$logger = New-SerilogBasicLogger `
+    -Path x:/path/logs/my-logger.log `
+    -SourceContext MyLogger
 ```
 
-This command creates a new root logger that writes log entries to the console and
-the specified path, assigns it to the default static logger, then creates and returns
-a named logger with the MyLogger source context.
+This command creates a new root logger named with the MyLogger source
+context that writes log entries to the console and the specified path.
 
 ## PARAMETERS
-
-### -OutputTemplate
-
-The message template describing the format used to write to the sink.
-
-```yaml
-Type: System.String
-DefaultValue: ''
-SupportsWildcards: false
-Aliases: []
-ParameterSets:
-- Name: (All)
-  Position: 1
-  IsRequired: false
-  ValueFromPipeline: false
-  ValueFromPipelineByPropertyName: true
-  ValueFromRemainingArguments: false
-DontShow: false
-AcceptedValues: []
-HelpMessage: ''
-```
 
 ### -Path
 
@@ -104,6 +82,27 @@ AcceptedValues: []
 HelpMessage: ''
 ```
 
+### -SourceContext
+
+The source context of the logger.
+
+```yaml
+Type: System.String
+DefaultValue: ''
+SupportsWildcards: false
+Aliases: []
+ParameterSets:
+- Name: (All)
+  Position: 1
+  IsRequired: false
+  ValueFromPipeline: false
+  ValueFromPipelineByPropertyName: true
+  ValueFromRemainingArguments: false
+DontShow: false
+AcceptedValues: []
+HelpMessage: ''
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
@@ -115,11 +114,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 
-You can pipe the source context of the logger.
+You can pipe the path to the log file.
 
 ### System.String
 
-You can pipe the path to the log file.
+You can pipe the source context of the logger.
 
 ## OUTPUTS
 

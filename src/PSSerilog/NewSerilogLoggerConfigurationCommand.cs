@@ -15,7 +15,6 @@ public class NewSerilogLoggerConfigurationCommand : PSCmdlet
         ValueFromPipeline = true,
         ValueFromPipelineByPropertyName = true,
         HelpMessage = "Configures the minimum level at which events will be passed to sinks (default Information level).")]
-    [ValidateNotNull]
     public LogEventLevel MinimumLevel { get; set; }
 
     [Parameter(
